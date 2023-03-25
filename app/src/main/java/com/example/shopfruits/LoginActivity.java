@@ -23,6 +23,7 @@ public class LoginActivity extends AppCompatActivity {
                 Login.setBackgroundResource(R.drawable.switch_trcks);
                 Sigin.setBackground(null);
                 signup.setVisibility(View.GONE);
+                Sigin.setTextColor(Color.rgb(255,0,55));
                 login.setVisibility(View.VISIBLE);
             }
         });
