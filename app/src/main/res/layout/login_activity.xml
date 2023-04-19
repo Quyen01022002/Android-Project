@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@drawable/loginbackground"
-    tools:context=".MainActivity">
+    tools:context=".Activity.MainActivity">
 
     <TextView
         android:layout_width="match_parent"
@@ -103,15 +103,14 @@
                     android:layout_height="wrap_content">
 
                     <com.google.android.material.textfield.TextInputEditText
-                        android:inputType="textPersonName|textEmailAddress"
                         android:id="@+id/eMail"
-                        android:ems="10"
-                        android:textSize="13sp"
-                        android:textColor="@color/black"
-                        android:textStyle="normal"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        />
+                        android:ems="10"
+                        android:inputType="textPersonName|textEmailAddress"
+                        android:textColor="@color/black"
+                        android:textSize="13sp"
+                        android:textStyle="normal" />
                 </com.google.android.material.textfield.TextInputLayout>
                 <com.google.android.material.textfield.TextInputLayout
                     android:hint="Password"
