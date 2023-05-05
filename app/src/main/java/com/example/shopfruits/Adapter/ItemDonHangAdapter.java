@@ -1,7 +1,6 @@
 package com.example.shopfruits.Adapter;
 
 import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,23 +9,20 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.example.shopfruits.Activity.CartActivity;
-import com.example.shopfruits.Activity.ChiTietAcivity;
+import com.example.shopfruits.Models.DonHangModel;
 import com.example.shopfruits.Models.OrderEnity;
-import com.example.shopfruits.Models.Product;
 import com.example.shopfruits.R;
 
 import java.util.List;
 
-public class DonHangAdapter extends RecyclerView.Adapter<DonHangAdapter.MyViewHolder> {
-    List<OrderEnity> array;
+public class ItemDonHangAdapter extends RecyclerView.Adapter<ItemDonHangAdapter.MyViewHolder> {
+    List<DonHangModel> array;
     Context context;
 
-    public DonHangAdapter(List<OrderEnity> array, Context context) {
+    public ItemDonHangAdapter(List<DonHangModel> array, Context context) {
         this.array = array;
         this.context = context;
     }
@@ -34,40 +30,40 @@ public class DonHangAdapter extends RecyclerView.Adapter<DonHangAdapter.MyViewHo
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view= LayoutInflater.from(parent.getContext()).inflate(R.layout.item_oder,null);
+        View view= LayoutInflater.from(parent.getContext()).inflate(R.layout.item_dh,null);
         MyViewHolder myViewHolder=new MyViewHolder(view);
         return myViewHolder;
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder{
 
-        public TextView TrangThai,TongTien;
+        public TextView Ten,Gia,SL;
+        public ImageView anh;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            TrangThai=itemView.findViewById(R.id.tv_trangthai);
-            TongTien=itemView.findViewById(R.id.TongDH);
+            Ten=itemView.findViewById(R.id.tv_nameitem_dh);
+            Gia=itemView.findViewById(R.id.tv_giaitem_dh);
+            SL=itemView.findViewById(R.id.tv_slitem_dh);
+            anh=itemView.findViewById(R.id.img_anhitem_dh);
 
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Toast.makeText(context,"Bạn đã chọn product", Toast.LENGTH_SHORT).show();
-//                    Product product = new Product();
-//                    Intent it=new Intent(context, ChiTietAcivity.class);
-//                    it.putExtra("id", idsp.getText());
-//
-//                    context.startActivity(it);
-                }
-            });
+
+
+
         }
     }
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder,int position){
 
-        OrderEnity product = array.get(position);
-        holder.TrangThai.setText(product.getStatus());
-        holder.TongTien.setText(String.valueOf(product.getCostSum()));
+        DonHangModel dh = array.get(position);
+        holder.Ten.setText(dh.getName());
+        holder.SL.setText(String.valueOf(dh.getCount()));
+        holder.Gia.setText(String.valueOf(dh.getPrice()));
+        Glide.with(context)
+                .load(dh.getImg().toString().trim())
+                .into(holder.anh);
+
 
 
     }

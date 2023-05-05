@@ -1,6 +1,4 @@
-package com.example.tranbuuquyen_tuan08;
-
-import static androidx.constraintlayout.widget.ConstraintLayoutStates.TAG;
+package com.example.shopfruits.Activity.User;
 
 import android.Manifest;
 import android.app.Activity;
@@ -23,20 +21,23 @@ import android.widget.Toast;
 import androidx.activity.result.ActivityResult;
 import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
-import androidx.activity.result.contract.ActivityResultContract;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.bumptech.glide.Glide;
+import com.example.shopfruits.API.APIService;
+import com.example.shopfruits.API.RetrofitClient;
+import com.example.shopfruits.API.constants;
+import com.example.shopfruits.Models.User;
+import com.example.shopfruits.Pref.SharePrefManager;
+import com.example.shopfruits.R;
+import com.example.shopfruits.until.RealPathUtil;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.List;
 
 import okhttp3.MediaType;
-import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -79,7 +80,7 @@ public class edit_profile extends AppCompatActivity {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
             p = storge_permissions_33;
         } else {
-    p=storge_permissions;
+            p=storge_permissions;
         }
         return p;
     }
@@ -93,7 +94,7 @@ public class edit_profile extends AppCompatActivity {
             openGallery();
         }
         else {
-        requestPermissions(permissions(),MY_REQUEST_CODE);
+            requestPermissions(permissions(),MY_REQUEST_CODE);
         }
     }
     @Override
@@ -167,28 +168,30 @@ public class edit_profile extends AppCompatActivity {
     }
     public void UploadImage1(){
         mProgressDialog.show();
-        Intent intent = getIntent();
-        String id= intent.getStringExtra("id");
-        editTextUserName.setText(id);
-        RequestBody requestUsername=RequestBody.create(MediaType.parse("multipart/form-data"),id);
-        String IMAGE_PATH=RealPathUtil.getRealPath(this,mUri);
+        int useriD = SharePrefManager.getInstance(this).getuserID();
+        String IMAGE_PATH= RealPathUtil.getRealPath(this,mUri);
         Log.e("ffff",IMAGE_PATH);
+        apiService = RetrofitClient.getInstance().getRetrofit(constants.ROOT_URL).create(APIService.class);
+        RequestBody requestUsername=RequestBody.create(MediaType.parse("multipart/form-data"),String.valueOf(useriD));
         File file=new File(IMAGE_PATH);
-        RequestBody requestFile=RequestBody.create(MediaType.parse("multipart/form-data"),file);
-        MultipartBody.Part partbodyavatr=MultipartBody.Part.createFormData(constants.MY_IMAGES,file.getName(),requestFile);
-        apiService = RetrofitClient.getInstance().getRetrofit(constants.URL_REGISTRATION).create(APIService.class);
-       apiService.upload(requestUsername,partbodyavatr).enqueue(new Callback<result>() {
-           @Override
-           public void onResponse(Call<result> call, Response<result> response) {
-               response.body().getResult();
 
-           }
+        User us=new User();
+        us = SharePrefManager.getInstance(this).getUser();
 
-           @Override
-           public void onFailure(Call<result> call, Throwable t) {
+        us.setAvatar(IMAGE_PATH);
 
-               Toast.makeText(edit_profile.this,t.getMessage() , Toast.LENGTH_SHORT).show();
-           }
-       });
+
+
+        apiService.update(us).enqueue(new Callback<User>() {
+            @Override
+            public void onResponse(Call<User> call, Response<User> response) {
+                Toast.makeText(edit_profile.this, "Da up load", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onFailure(Call<User> call, Throwable t) {
+
+            }
+        });
     }
 }
