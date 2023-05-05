@@ -2,8 +2,8 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -23,7 +23,7 @@
                 android:layout_height="387dp">
 
                 <ImageView
-                    android:id="@+id/imageView19"
+                    android:id="@+id/itemsp"
                     android:layout_width="300dp"
                     android:layout_height="300dp"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -33,7 +33,7 @@
                     tools:layout_editor_absoluteY="16dp" />
 
                 <ImageView
-                    android:id="@+id/imageView18"
+                    android:id="@+id/imgbg"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="-5dp"
@@ -43,7 +43,7 @@
                     app:srcCompat="@drawable/nen" />
 
                 <ImageView
-                    android:id="@+id/imageView20"
+                    android:id="@+id/quaylai"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
@@ -94,7 +94,7 @@
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <TextView
-                    android:id="@+id/textView12"
+                    android:id="@+id/tv_nameSPItem"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
@@ -105,7 +105,7 @@
                     app:layout_constraintStart_toStartOf="parent" />
 
                 <TextView
-                    android:id="@+id/textGia"
+                    android:id="@+id/tv_GiaItem"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
@@ -114,29 +114,7 @@
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView12" />
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="200dp"
-                    android:layout_height="50dp"
-                    android:background="@drawable/addtocart"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent">
-
-                    <TextView
-                        android:id="@+id/textView15"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Thêm Vào Giỏ Hàng"
-                        android:textColor="#fff"
-                        android:textSize="20dp"
-                        android:textStyle="bold"
-
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-                </androidx.constraintlayout.widget.ConstraintLayout>
+                    app:layout_constraintTop_toBottomOf="@+id/tv_nameSPItem" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -200,12 +178,12 @@
                     app:layout_constraintTop_toTopOf="@+id/linearLayout3">
 
                     <TextView
-                        android:id="@+id/textView20"
+                        android:id="@+id/tv_mota"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:text="TextView"
                         android:paddingLeft="16dp"
                         android:paddingTop="10dp"
+                        android:text="TextView"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -214,5 +192,53 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
         </LinearLayout>
     </ScrollView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="200dp"
+            android:background="@drawable/addtocart"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/textView13"
+                android:layout_width="wrap_content"
+                android:textColor="#fff"
+                android:textSize="17dp"
+                android:textStyle="bold"
+                android:layout_height="wrap_content"
+                android:text="Thêm Vào Giỏ Hàng"
+
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:background="#00BFFF"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/tv_mua"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Mua Ngay"
+                android:textColor="#fff"
+                android:textSize="17dp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

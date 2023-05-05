@@ -1,13 +1,12 @@
-package com.example.tranbuuquyen_tuan08;
+package com.example.shopfruits.API;
 
 public class constants {
-    public static String localhost = "app.iotstar.vn";
+    public static String localhost = "192.168.61.92:8090";
 
-    private static final String MY_USERNAME = "id";
-    public static final String MY_IMAGES = "images";
+
 
     //login và register API
-    private static final String ROOT_URL = "http://" + localhost + "/";
-    public static final String URL_REGISTRATION = ROOT_URL + "shoppingapp/";
-    public static final String URL_CATEGORY= ROOT_URL + "appfoods/";
+    public static final String ROOT_URL = "http://" + localhost + "/";
+
+    public static final String LOGIN = "login";
 }
