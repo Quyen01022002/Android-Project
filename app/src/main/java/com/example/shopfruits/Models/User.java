@@ -1,55 +1,42 @@
-package com.example.tranbuuquyen_tuan08;
-
-import com.google.gson.annotations.Expose;
-import com.google.gson.annotations.SerializedName;
+package com.example.shopfruits.Models;
 
 import java.io.Serializable;
 
 public class User implements Serializable {
-    @SerializedName("id")
-    @Expose
-    private int id;
 
-    @SerializedName("username")
-    @Expose
-    private String username;
+    private int userID;
 
-    @SerializedName("email")
-    @Expose
+
+    private String name;
+
+
     private String email;
 
-    @SerializedName("gender")
-    @Expose
-    private String gender;
 
-    @SerializedName("images")
-    @Expose
-    private String images;
+    private String phone;
 
-    public User(){};
 
-    public User(int id, String name, String email, String gender, String images) {
-        this.id = id;
-        this.username = name;
-        this.email = email;
-        this.gender = gender;
-        this.images = images;
+    private String salt;
+
+    private String hash_password;
+    private String role;
+    private String avatar;
+    private float point;
+
+    public int getUserID() {
+        return userID;
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
+    public void setUserID(int userID) {
+        this.userID = userID;
     }
 
     public String getName() {
-        return username;
+        return name;
     }
 
     public void setName(String name) {
-        this.username = name;
+        this.name = name;
     }
 
     public String getEmail() {
@@ -60,19 +47,66 @@ public class User implements Serializable {
         this.email = email;
     }
 
-    public String getGender() {
-        return gender;
+    public String getPhone() {
+        return phone;
     }
 
-    public void setGender(String gender) {
-        this.gender = gender;
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
-    public String getImages() {
-        return images;
+    public String getSalt() {
+        return salt;
     }
 
-    public void setImages(String images) {
-        this.images = images;
+    public void setSalt(String salt) {
+        this.salt = salt;
+    }
+
+    public String getHash_password() {
+        return hash_password;
+    }
+
+    public void setHash_password(String hash_password) {
+        this.hash_password = hash_password;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
+    public String getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
+    }
+
+    public float getPoint() {
+        return point;
+    }
+
+    public void setPoint(float point) {
+        this.point = point;
+    }
+
+    public User() {
+    }
+
+    public User(int userID, String name, String email, String phone, String salt, String hash_password, String role, String avatar, float point) {
+        this.userID = userID;
+        this.name = name;
+        this.email = email;
+        this.phone = phone;
+        this.salt = salt;
+        this.hash_password = hash_password;
+        this.role = role;
+        this.avatar = avatar;
+        this.point = point;
     }
 }
