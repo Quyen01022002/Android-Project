@@ -1,22 +1,15 @@
-package com.example.shopfruits.ui.home;
+package com.example.shopfruits.Activity.User;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
+import android.view.Menu;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
-import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProvider;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
+import com.bumptech.glide.Glide;
 import com.example.shopfruits.API.APIService;
 import com.example.shopfruits.API.RetrofitClient;
 import com.example.shopfruits.API.constants;
@@ -29,7 +22,19 @@ import com.example.shopfruits.Models.Product;
 import com.example.shopfruits.Models.User;
 import com.example.shopfruits.Pref.SharePrefManager;
 import com.example.shopfruits.R;
-import com.example.shopfruits.databinding.FragmentHomeBinding;
+import com.example.shopfruits.databinding.ActivityMainBinding;
+import com.google.android.material.navigation.NavigationView;
+
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
+import androidx.navigation.ui.AppBarConfiguration;
+import androidx.navigation.ui.NavigationUI;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
@@ -37,7 +42,11 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class HomeFragment extends Fragment {
+public class MainActivity extends AppCompatActivity {
+
+    private AppBarConfiguration mAppBarConfiguration;
+    private ActivityMainBinding binding;
+
     TextView name,userEmail;
 
     ProductAdapter productAdapter;
@@ -49,20 +58,17 @@ public class HomeFragment extends Fragment {
     APIService apiService;
     List<Product> productList;
     ImageView imageViewProfile;
-    ConstraintLayout cart;
-    View view;
+    ConstraintLayout cart,profile;
 
-    private FragmentHomeBinding binding;
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
 
-    public View onCreateView(@NonNull LayoutInflater inflater,
-                             ViewGroup container, Bundle savedInstanceState) {
-        view=inflater.inflate(R.layout.fragment_home, container, false);
-        HomeViewModel homeViewModel =
-                new ViewModelProvider(this).get(HomeViewModel.class);
+        binding = ActivityMainBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
 
-        binding = FragmentHomeBinding.inflate(inflater, container, false);
-        View root = binding.getRoot();
-        Intent intent = getActivity().getIntent();
+        setSupportActionBar(binding.appBarMain.toolbar);
+        Intent intent = getIntent();
         String id= intent.getStringExtra("idcate");
 
         AnhXa();
@@ -80,17 +86,98 @@ public class HomeFragment extends Fragment {
 
         }
 
+        DrawerLayout drawer = binding.drawerLayout;
+        NavigationView navigationView = binding.navView;
+        // Passing each menu ID as a set of Ids because each
+        // menu should be considered as top level destinations.
+        mAppBarConfiguration = new AppBarConfiguration.Builder(
+                R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow,R.id.nav_shop)
+                .setOpenableLayout(drawer)
+                .build();
+
+        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
+        NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
+        NavigationUI.setupWithNavController(navigationView, navController);
+
+        View headerView = navigationView.getHeaderView(0);
 
 
 
+        if(SharePrefManager.getInstance(this).isLoggedIn()){
 
-        return view;
+
+            name = headerView.findViewById(R.id.tv_Name);
+            userEmail = headerView.findViewById(R.id.tv_email);
+            imageViewProfile = headerView.findViewById(R.id.img);
+            profile = headerView.findViewById(R.id.profile);
+
+
+            user = SharePrefManager.getInstance(this).getUser();
+            Log.d("loggs", "userLogin: " +user.getName());
+            name.setText(user.getName());
+            userEmail.setText(user.getEmail());
+            Glide.with(getApplicationContext()).load(user.getAvatar()).into(imageViewProfile);
+
+        }
+        // lưu vào Pre
+        getIDCart(user.getUserID());
+        SharePrefManager.getInstance(getApplicationContext()).userID(user.getUserID());
+
+        cart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent it=new Intent(MainActivity.this, CartActivity.class);
+                it.putExtra("iduser", user.getUserID());
+                startActivity(it);
+            }
+        });
+        imageViewProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent it=new Intent(MainActivity.this,edit_profile.class);
+                startActivity(it);
+            }
+        });
+        profile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent it=new Intent(MainActivity.this,profile.class);
+                startActivity(it);
+
+            }
+        });
+
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.main, menu);
+        return true;
     }
     private void AnhXa(){
-        cart=view.findViewById(R.id.cart);
-        rcProduct=(RecyclerView) view.findViewById(R.id.rc_product);
-        rctop5=(RecyclerView) view.findViewById(R.id.rc_top5);
-        rc_loai=(RecyclerView) view.findViewById(R.id.rc_loai);
+        cart=findViewById(R.id.cart);
+        rcProduct=(RecyclerView) findViewById(R.id.rc_product);
+        rctop5=(RecyclerView) findViewById(R.id.rc_top5);
+        rc_loai=(RecyclerView) findViewById(R.id.rc_loai);
+    }
+    @Override
+    public boolean onSupportNavigateUp() {
+        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
+        return NavigationUI.navigateUp(navController, mAppBarConfiguration)
+                || super.onSupportNavigateUp();
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+
+        if (id == R.id.action_settings) {
+
+            SharePrefManager.getInstance(getApplicationContext()).logout();
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
     private int getIDCart(int iduser)
     {
@@ -101,7 +188,7 @@ public class HomeFragment extends Fragment {
                 CartEnity cart1=new CartEnity();
                 cart1=response.body();
                 int id=cart1.getCartID();
-                SharePrefManager.getInstance(getActivity()).cartID(id);
+                SharePrefManager.getInstance(getApplicationContext()).cartID(id);
             }
 
             @Override
@@ -119,9 +206,9 @@ public class HomeFragment extends Fragment {
             public void onResponse(Call<List<Product>> call, Response<List<Product>> response) {
                 if(response.isSuccessful()){
                     productList=response.body();
-                    productAdapter=new ProductAdapter(productList,getActivity());
+                    productAdapter=new ProductAdapter(productList,MainActivity.this);
                     rcProduct.setHasFixedSize(true);
-                    GridLayoutManager layoutManager=new GridLayoutManager(getActivity(),2);
+                    GridLayoutManager layoutManager=new GridLayoutManager(getApplicationContext(),2);
                     rcProduct.setLayoutManager(layoutManager);
                     rcProduct.setAdapter(productAdapter);
                 }else{
@@ -144,9 +231,9 @@ public class HomeFragment extends Fragment {
             public void onResponse(Call<List<Product>> call, Response<List<Product>> response) {
                 if(response.isSuccessful()){
                     productList=response.body();
-                    productAdapter=new ProductAdapter(productList,getActivity());
+                    productAdapter=new ProductAdapter(productList,MainActivity.this);
                     rcProduct.setHasFixedSize(true);
-                    GridLayoutManager layoutManager=new GridLayoutManager(getActivity(),2);
+                    GridLayoutManager layoutManager=new GridLayoutManager(getApplicationContext(),2);
                     rcProduct.setLayoutManager(layoutManager);
                     rcProduct.setAdapter(productAdapter);
                 }else{
@@ -168,10 +255,10 @@ public class HomeFragment extends Fragment {
             public void onResponse(Call<List<Product>> call, Response<List<Product>> response) {
                 if(response.isSuccessful()){
                     List<Product> productListtop5=response.body();
-                    productAdaptertop5=new ProductAdapterTop5(productListtop5,getActivity());
+                    productAdaptertop5=new ProductAdapterTop5(productListtop5,MainActivity.this);
                     rctop5.setHasFixedSize(true);
                     LinearLayoutManager layoutManager
-                            = new LinearLayoutManager((getActivity()) , LinearLayoutManager.HORIZONTAL, false);
+                            = new LinearLayoutManager((getApplicationContext()) , LinearLayoutManager.HORIZONTAL, false);
 
                     rctop5.setLayoutManager(layoutManager);
                     rctop5.setAdapter(productAdaptertop5);
@@ -194,10 +281,10 @@ public class HomeFragment extends Fragment {
             public void onResponse(Call<List<Category>> call, Response<List<Category>> response) {
                 if(response.isSuccessful()){
                     List<Category> listcate=response.body();
-                    categoryAdapter=new CategoryAdapter(listcate,getActivity());
+                    categoryAdapter=new CategoryAdapter(listcate,MainActivity.this);
                     rc_loai.setHasFixedSize(true);
                     LinearLayoutManager layoutManager
-                            = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
+                            = new LinearLayoutManager(MainActivity.this, LinearLayoutManager.HORIZONTAL, false);
 
                     rc_loai.setLayoutManager(layoutManager);
                     rc_loai.setAdapter(categoryAdapter);
@@ -212,12 +299,5 @@ public class HomeFragment extends Fragment {
             }
         });
 
-    }
-
-
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        binding = null;
     }
 }

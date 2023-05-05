@@ -17,11 +17,11 @@ import com.example.shopfruits.R;
 
 import java.util.List;
 
-public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.MyViewHolder> {
+public class ProductAdapterTop5 extends RecyclerView.Adapter<ProductAdapterTop5.MyViewHolder> {
     List<Product> array;
     Context context;
 
-    public ProductAdapter(List<Product> array, Context context) {
+    public ProductAdapterTop5(List<Product> array, Context context) {
         this.array = array;
         this.context = context;
     }
@@ -29,7 +29,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.MyViewHo
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view= LayoutInflater.from(parent.getContext()).inflate(R.layout.item_product,null);
+        View view= LayoutInflater.from(parent.getContext()).inflate(R.layout.item_top5,null);
         MyViewHolder myViewHolder=new MyViewHolder(view);
         return myViewHolder;
     }
@@ -39,8 +39,8 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.MyViewHo
         public TextView tenSp;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
-            images=itemView.findViewById(R.id.imageProduct);
-            tenSp=itemView.findViewById(R.id.tv_nameproduct);
+            images=itemView.findViewById(R.id.imageViewRC);
+            tenSp=itemView.findViewById(R.id.textNametop1);
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -54,7 +54,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.MyViewHo
         Product product = array.get(position);
         holder.tenSp.setText(product.getName());
         Glide.with(context)
-                .load(product.getImg())
+                .load(product.getImg().toString().trim())
                 .into(holder.images);
     }
     @Override

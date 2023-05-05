@@ -1,4 +1,4 @@
-package com.example.tranbuuquyen_tuan08;
+package com.example.shopfruits.Adapter;
 
 import android.content.Context;
 import android.content.Intent;
@@ -13,6 +13,9 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.shopfruits.Activity.User.MainActivity;
+import com.example.shopfruits.Models.Category;
+import com.example.shopfruits.R;
 
 import java.util.List;
 
@@ -38,14 +41,16 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.MyView
         public TextView tenSp,id;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
-            images=itemView.findViewById(R.id.image_product);
-            tenSp=itemView.findViewById(R.id.tvNameProduct);
-            id=itemView.findViewById(R.id.textView5);
+            images=itemView.findViewById(R.id.img_category);
+            tenSp=itemView.findViewById(R.id.tv_catename);
+            id=itemView.findViewById(R.id.tv_idcate);
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     Toast.makeText(context,"Bạn đã chọn category"+tenSp.getText().toString(), Toast.LENGTH_SHORT).show();
-
+                    Intent it=new Intent(context, MainActivity.class);
+                    it.putExtra("idcate", id.getText());
+                    context.startActivity(it);
                 }
             });
         }
@@ -54,9 +59,10 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.MyView
     public void onBindViewHolder(@NonNull MyViewHolder holder,int position){
         Category category =array.get(position);
         holder.tenSp.setText(category.getName());
-
+        String proID=String.valueOf(category.getCategoryID());
+        holder.id.setText(proID);
         Glide.with(context)
-                .load(category.getImages())
+                .load(category.getImage())
                 .into(holder.images);
 
     }
