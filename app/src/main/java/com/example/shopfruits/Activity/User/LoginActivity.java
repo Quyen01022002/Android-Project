@@ -16,11 +16,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.shopfruits.API.APIService;
 import com.example.shopfruits.API.RetrofitClient;
 import com.example.shopfruits.API.constants;
-import com.example.shopfruits.Activity.Shipper.ShipperHomeActivity;
+import com.example.shopfruits.Activity.Shipper.ShipperHome;
 import com.example.shopfruits.Models.CartEnity;
 import com.example.shopfruits.Models.User;
 import com.example.shopfruits.Pref.SharePrefManager;
 import com.example.shopfruits.R;
+import com.example.shopfruits.until.MaHoa;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -49,7 +50,7 @@ public class LoginActivity extends AppCompatActivity {
                 Intent it = new Intent(LoginActivity.this, MainActivity.class);
                 startActivity(it);
             } else if (Integer.parseInt(user.getRole().trim())==2) {
-                Intent it = new Intent(LoginActivity.this, ShipperHomeActivity.class);
+                Intent it = new Intent(LoginActivity.this, ShipperHome.class);
                 startActivity(it);
 
             }
@@ -125,7 +126,7 @@ public class LoginActivity extends AppCompatActivity {
         if(Pass.equals(Repass)) {
 
             apiService = RetrofitClient.getInstance().getRetrofit(constants.ROOT_URL).create(APIService.class);
-            Pass = util.MaHoa.toSHA1(Pass);
+            Pass = MaHoa.toSHA1(Pass);
             User us = new User();
             us.setEmail(Email);
             us.setName(Email);
@@ -226,7 +227,7 @@ public class LoginActivity extends AppCompatActivity {
         }
         Log.d("loggs", "userLogin: " + constants.ROOT_URL+constants.LOGIN);
         apiService = RetrofitClient.getInstance().getRetrofit(constants.ROOT_URL).create(APIService.class);
-        password= util.MaHoa.toSHA1(password);
+        password= MaHoa.toSHA1(password);
         apiService.login(username, password).enqueue(new Callback<User>() {
             @Override
             public void onResponse(Call<User> call, Response<User> response) {
@@ -250,7 +251,7 @@ public class LoginActivity extends AppCompatActivity {
                             Intent it = new Intent(LoginActivity.this, MainActivity.class);
                             startActivity(it);
                         } else if (Integer.parseInt(userLogin.getRole().trim())==2) {
-                            Intent it = new Intent(LoginActivity.this, ShipperHomeActivity.class);
+                            Intent it = new Intent(LoginActivity.this, ShipperHome.class);
                             startActivity(it);
 
                         }
