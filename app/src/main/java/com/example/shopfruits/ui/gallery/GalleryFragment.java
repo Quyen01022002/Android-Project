@@ -1,77 +1,72 @@
 package com.example.shopfruits.ui.gallery;
 
-import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProvider;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
+import androidx.fragment.app.FragmentManager;
+import androidx.viewpager.widget.ViewPager;
+import androidx.viewpager2.widget.ViewPager2;
 
-import com.example.shopfruits.API.APIService;
-import com.example.shopfruits.API.RetrofitClient;
-import com.example.shopfruits.API.constants;
-import com.example.shopfruits.Adapter.DonHangAdapter;
-import com.example.shopfruits.Models.OrderEnity;
-import com.example.shopfruits.Pref.SharePrefManager;
 import com.example.shopfruits.R;
 import com.example.shopfruits.databinding.FragmentGalleryBinding;
-
-import java.util.List;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
+import com.google.android.material.tabs.TabLayout;
 
 public class GalleryFragment extends Fragment {
-    RecyclerView DonHang;
-    DonHangAdapter donHangAdapter;
-    APIService apiService;
+
 
     private FragmentGalleryBinding binding;
+    private ViewPager2Adapter_User viewPager2Adapter;
 
-    public View onCreateView(@NonNull LayoutInflater inflater,
-                             ViewGroup container, Bundle savedInstanceState) {
-        GalleryViewModel galleryViewModel =
-                new ViewModelProvider(this).get(GalleryViewModel.class);
 
-        binding = FragmentGalleryBinding.inflate(inflater, container, false);
-        View root = binding.getRoot();
 
-        DonHang=binding.RcDonHang;
-        int useriD = SharePrefManager.getInstance(getActivity()).getuserID();
-        apiService= RetrofitClient.getInstance().getRetrofit(constants.ROOT_URL).create(APIService.class);
-        apiService.getDonHang(useriD).enqueue(new Callback<List<OrderEnity>>() {
+
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        View view=inflater.inflate(R.layout.fragment_gallery, container, false);
+        binding= FragmentGalleryBinding.inflate(getLayoutInflater());
+        TabLayout tab=view.findViewById(R.id.tabLayout);
+
+
+        tab.addTab(tab.newTab().setText("Tất Cả"));
+        tab.addTab(tab.newTab().setText("Xác Nhận"));
+        tab.addTab(tab.newTab().setText("Đã Đóng Gói"));
+        tab.addTab(tab.newTab().setText("Đang Giao"));
+        tab.addTab(tab.newTab().setText("Đã Giao"));
+        tab.addTab(tab.newTab().setText("Hủy"));
+        ViewPager2 viewPager=view.findViewById(R.id.viewPager2);
+        FragmentManager fragmentManager= getChildFragmentManager();
+        viewPager2Adapter = new ViewPager2Adapter_User(fragmentManager, getLifecycle());
+        viewPager.setAdapter(viewPager2Adapter);
+
+       tab.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
-            public void onResponse(Call<List<OrderEnity>> call, Response<List<OrderEnity>> response) {
-                List<OrderEnity> or=response.body();
+            public void onTabSelected(TabLayout.Tab tab) {
+                viewPager.setCurrentItem(tab.getPosition());
+            }
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
 
-                donHangAdapter=new DonHangAdapter(or, getActivity());
-                DonHang.setHasFixedSize(true);
-                LinearLayoutManager layoutManager
-                        = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
-
-                DonHang.setLayoutManager(layoutManager);
-                DonHang.setAdapter(donHangAdapter);
             }
 
             @Override
-            public void onFailure(Call<List<OrderEnity>> call, Throwable t) {
+            public void onTabReselected(TabLayout.Tab tab) {
 
             }
         });
 
-        return root;
+        viewPager.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
+            @Override
+            public void onPageSelected(int position) {
+               tab.selectTab(tab.getTabAt(position));
+            }
+        });
+return view;
     }
 
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        binding = null;
-    }
 }

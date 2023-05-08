@@ -73,6 +73,10 @@
             android:exported="false"
             android:theme="@style/Theme.ShopFruits.NoActionBar" />
         <activity
+            android:name=".Activity.User.DanhGia"
+            android:exported="false"
+            android:theme="@style/Theme.ShopFruits.NoActionBar" />
+        <activity
             android:name=".Activity.User.profile"
             android:exported="false"
             android:theme="@style/Theme.ShopFruits.NoActionBar" />

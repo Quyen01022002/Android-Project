@@ -10,6 +10,7 @@ import com.example.shopfruits.Models.DonHang_Shop_Model;
 import com.example.shopfruits.Models.OrderEnity;
 import com.example.shopfruits.Models.OrderItemEnity;
 import com.example.shopfruits.Models.Product;
+import com.example.shopfruits.Models.Review;
 import com.example.shopfruits.Models.Stores;
 import com.example.shopfruits.Models.User;
 
@@ -72,6 +73,9 @@ public interface APIService {
     Call<OrderEnity> getorder(@Field("orderID") int id);
     @POST("saveorderitem")
     Call<OrderItemEnity> saveCHiTietDH(@Body OrderItemEnity orderEnity);
+
+    @POST("danhgia")
+    Call<Review> Danhgia(@Body Review review);
     @FormUrlEncoded
     @POST("getidcart")
     Call<CartEnity> getidcart(@Field("userID") int id);
@@ -83,6 +87,9 @@ public interface APIService {
     @FormUrlEncoded
     @POST("getdonhang")
     Call<List<OrderEnity>>getDonHang(@Field("userID") int id);
+    @FormUrlEncoded
+    @POST("getTTdh")
+    Call<List<OrderEnity>>getDonHangbyTT(@Field("userID") int id,@Field("status") String TT);
     @FormUrlEncoded
     @POST("donhangshop")
     Call<List<DonHang_Shop_Model>>getDHByShop(@Field("storeID") int id);
