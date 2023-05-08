@@ -17,6 +17,7 @@ import com.example.shopfruits.API.constants;
 import com.example.shopfruits.Activity.Vendor.ChiTietDH_Activity_shop;
 import com.example.shopfruits.Models.DonHangModel;
 import com.example.shopfruits.Models.DonHang_Shop_Model;
+import com.example.shopfruits.Pref.SharePrefManager;
 import com.example.shopfruits.R;
 
 import java.util.List;
@@ -65,7 +66,7 @@ public class DonHang_ShopAdapter extends RecyclerView.Adapter<DonHang_ShopAdapte
 
 
                    Intent it=new Intent(context, ChiTietDH_Activity_shop.class);
-                    it.putExtra("iddh", ID.getText());
+                    SharePrefManager.getInstance(context).DHID(Integer.parseInt(ID.getText().toString()));
 
                     context.startActivity(it);
                 }

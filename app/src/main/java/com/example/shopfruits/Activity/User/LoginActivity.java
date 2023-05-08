@@ -245,6 +245,7 @@ public class LoginActivity extends AppCompatActivity {
                                 userLogin.getRole(),
                                 userLogin.getPoint()
                         );
+                        SharePrefManager.getInstance(getApplicationContext()).userID(user.getUserID());
                         SharePrefManager.getInstance(getApplicationContext()).userLogin(user);
                         finish();
                         if(Integer.parseInt(userLogin.getRole().trim())==1) {
