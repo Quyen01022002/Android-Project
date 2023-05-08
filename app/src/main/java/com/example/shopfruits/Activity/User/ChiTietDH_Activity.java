@@ -65,6 +65,24 @@ public class ChiTietDH_Activity extends AppCompatActivity {
                 if(TrangThai.getText().toString().equals("Chưa Xác Nhận"))
                 {
                     XacNhan.setVisibility(View.VISIBLE);
+                    XacNhan.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            orderEnity.setStatus("Đã Xác Nhận");
+                            apiService.capnhat(orderEnity).enqueue(new Callback<OrderEnity>() {
+                                @Override
+                                public void onResponse(Call<OrderEnity> call, Response<OrderEnity> response) {
+
+                                }
+
+                                @Override
+                                public void onFailure(Call<OrderEnity> call, Throwable t) {
+
+                                }
+                            });
+                        }
+                    });
+
 
                 }
                 if(TrangThai.getText().toString().equals("Đã Xác Nhận"))
@@ -182,27 +200,21 @@ public class ChiTietDH_Activity extends AppCompatActivity {
                     ConstraintLayout ChuaXacNhan;
                     ChuaXacNhan=findViewById(R.id.chuaxacnhan);
                     ChuaXacNhan.setVisibility(View.VISIBLE);
-
+                    TextView xacnhan=findViewById(R.id.xacnhan);
+                    xacnhan.setText("Đánh giá");
+                    XacNhan=findViewById(R.id.XacNhan_Constrian);
+                    XacNhan.setVisibility(View.VISIBLE);
+                    XacNhan.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            Intent it=new Intent(ChiTietDH_Activity.this,DanhGia.class);
+                            it.putExtra("iddh",iddh);
+                            startActivity(it);
+                        }
+                    });
 
 
                 }
-                XacNhan.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        orderEnity.setStatus("Đã Xác Nhận");
-                        apiService.capnhat(orderEnity).enqueue(new Callback<OrderEnity>() {
-                            @Override
-                            public void onResponse(Call<OrderEnity> call, Response<OrderEnity> response) {
-
-                            }
-
-                            @Override
-                            public void onFailure(Call<OrderEnity> call, Throwable t) {
-
-                            }
-                        });
-                    }
-                });
 
 
 
