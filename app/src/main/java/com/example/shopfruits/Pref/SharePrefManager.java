@@ -69,6 +69,18 @@ public class SharePrefManager {
         SharedPreferences sharedPreferences = ctx.getSharedPreferences(SHARED_PREF_NAME, MODE_PRIVATE);
         return sharedPreferences.getInt("user",0);
     }
+    public void DHID(int cartid)
+    {
+        SharedPreferences sharedPreferences = ctx.getSharedPreferences(SHARED_PREF_NAME, MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putInt("dhid", cartid);
+        editor.apply();
+    }
+    public int getDHID()
+    {
+        SharedPreferences sharedPreferences = ctx.getSharedPreferences(SHARED_PREF_NAME, MODE_PRIVATE);
+        return sharedPreferences.getInt("dhid",0);
+    }
 
     public void userLogin(User user){
         SharedPreferences sharedPreferences = ctx.getSharedPreferences(SHARED_PREF_NAME, MODE_PRIVATE);

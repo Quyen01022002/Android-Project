@@ -1,4 +1,4 @@
-package com.example.shopfruits.Activity.Vendor;
+package com.example.shopfruits.Activity.Shipper;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -46,9 +46,9 @@ public class DangGiaoOrderFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState){
         binding= FragmentDanggiaoBinding.inflate(inflater, container,false);
         DonHang=binding.rcDonhangDonggoi;
-        int id = SharePrefManager.getInstance(getActivity()).getStoreID();
+        int useriD = SharePrefManager.getInstance(getActivity()).getuserID();
         apiService= RetrofitClient.getInstance().getRetrofit(constants.ROOT_URL).create(APIService.class);
-        apiService.GetTrangThai(id,"Đang Giao").enqueue(new Callback<List<DonHang_Shop_Model>>() {
+        apiService.GetTrangThaishiper(useriD,"Đang Giao").enqueue(new Callback<List<DonHang_Shop_Model>>() {
             @Override
             public void onResponse(Call<List<DonHang_Shop_Model>> call, Response<List<DonHang_Shop_Model>> response) {
                 List<DonHang_Shop_Model> or=response.body();

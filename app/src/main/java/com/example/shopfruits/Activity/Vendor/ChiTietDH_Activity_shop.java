@@ -58,7 +58,7 @@ public class ChiTietDH_Activity_shop extends AppCompatActivity {
 
         Glide.with(getApplicationContext()).load(user.getAvatar().toString().trim()).into(Avatar);
 
-        int iddh=Integer.parseInt(it.getStringExtra("iddh"));
+        int iddh = SharePrefManager.getInstance(getApplicationContext()).getDHID();
         apiService= RetrofitClient.getInstance().getRetrofit(constants.ROOT_URL).create(APIService.class);
         apiService.getorder(iddh).enqueue(new Callback<OrderEnity>() {
             @Override
@@ -84,7 +84,35 @@ public class ChiTietDH_Activity_shop extends AppCompatActivity {
                                 @Override
                                 public void onResponse(Call<OrderEnity> call, Response<OrderEnity> response) {
                                     Intent it=new Intent(ChiTietDH_Activity_shop.this, ChiTietDH_Activity_shop.class);
-                                    it.putExtra("iddh", orderEnity.getOrderID());
+
+
+                                    startActivity(it);
+                                }
+
+                                @Override
+                                public void onFailure(Call<OrderEnity> call, Throwable t) {
+
+                                }
+                            });
+                        }
+                    });
+
+
+                }
+                if(TrangThai.getText().toString().equals("Đang Giao"))
+                {
+                    XacNhan.setVisibility(View.VISIBLE);
+                    TextView tv_xacnhan=findViewById(R.id.xacnhan);
+                    tv_xacnhan.setText("Đã giao");
+                    XacNhan.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            orderEnity.setStatus("Đã Giao");
+                            apiService.capnhat(orderEnity).enqueue(new Callback<OrderEnity>() {
+                                @Override
+                                public void onResponse(Call<OrderEnity> call, Response<OrderEnity> response) {
+                                    Intent it=new Intent(ChiTietDH_Activity_shop.this, ChiTietDH_Activity_shop.class);
+
 
                                     startActivity(it);
                                 }

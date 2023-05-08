@@ -90,6 +90,9 @@ public interface APIService {
     @POST("trangthai")
     Call<List<DonHang_Shop_Model>>GetTrangThai(@Field("storeID") int id,@Field("status")  String status);
     @FormUrlEncoded
+    @POST("DHshipper")
+    Call<List<DonHang_Shop_Model>>GetTrangThaishiper(@Field("shipperID") int id,@Field("status")  String status);
+    @FormUrlEncoded
     @POST("getstore")
     Call<List<Stores>>getstore(@Field("ownerID") int id);
     @FormUrlEncoded

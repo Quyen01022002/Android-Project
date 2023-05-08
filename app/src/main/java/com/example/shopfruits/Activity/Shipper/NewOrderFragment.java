@@ -1,4 +1,4 @@
-package com.example.shopfruits.Activity.Vendor;
+package com.example.shopfruits.Activity.Shipper;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -17,6 +17,7 @@ import com.example.shopfruits.API.RetrofitClient;
 import com.example.shopfruits.API.constants;
 import com.example.shopfruits.Adapter.DonHang_ShopAdapter;
 import com.example.shopfruits.Models.DonHang_Shop_Model;
+import com.example.shopfruits.Pref.SharePrefManager;
 import com.example.shopfruits.databinding.FragmentNeworderBinding;
 
 import java.util.List;
@@ -46,10 +47,9 @@ public class NewOrderFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState){
         binding= FragmentNeworderBinding.inflate(inflater, container,false);
         DonHang=binding.rcDonhangVendor;
-        Intent intent = getActivity().getIntent();
-        String id= intent.getStringExtra("idst");
+        int useriD = SharePrefManager.getInstance(getActivity()).getuserID();
         apiService= RetrofitClient.getInstance().getRetrofit(constants.ROOT_URL).create(APIService.class);
-        apiService.getDHByShop(Integer.parseInt(id)).enqueue(new Callback<List<DonHang_Shop_Model>>() {
+        apiService.GetTrangThaishiper(useriD,"Đã Giao").enqueue(new Callback<List<DonHang_Shop_Model>>() {
             @Override
             public void onResponse(Call<List<DonHang_Shop_Model>> call, Response<List<DonHang_Shop_Model>> response) {
                 List<DonHang_Shop_Model> or=response.body();
