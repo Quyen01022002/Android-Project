@@ -1,4 +1,4 @@
-package com.example.shopfruits.Activity.Vendor;
+package com.example.shopfruits.Activity.Shipper;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -6,9 +6,13 @@ import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.Lifecycle;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 
-public class ViewPager2Adapter extends FragmentStateAdapter {
+import com.example.shopfruits.Activity.Vendor.DonggoiOrderFragment;
+import com.example.shopfruits.Activity.Vendor.NewOrderFragment;
+import com.example.shopfruits.Activity.Vendor.XnOrderFragment;
 
-    public ViewPager2Adapter(@NonNull FragmentManager fragmentManager, @NonNull Lifecycle lifecycle){
+public class ViewPager2Adapter_Shipper extends FragmentStateAdapter {
+
+    public ViewPager2Adapter_Shipper(@NonNull FragmentManager fragmentManager, @NonNull Lifecycle lifecycle){
         super(fragmentManager, lifecycle);
     }
 
@@ -18,17 +22,14 @@ public class ViewPager2Adapter extends FragmentStateAdapter {
         switch (position){
 
             case 0:
-                return  new NewOrderFragment();
+                return  new com.example.shopfruits.Activity.Shipper.NewOrderFragment();
             case 1:
-                return  new XnOrderFragment();
-            case 2:
-                return  new DonggoiOrderFragment();
-            case 3:
                 return  new DangGiaoOrderFragment();
-            case 4:
+            case 2:
                 return  new DaGiaoOrderFragment();
+
             default:
-                return new NewOrderFragment();
+                return new com.example.shopfruits.Activity.Shipper.NewOrderFragment();
         }
 
 
