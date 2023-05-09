@@ -63,7 +63,7 @@
         app:layout_constraintTop_toBottomOf="@+id/rc_product_dh">
 
         <ImageView
-            android:id="@+id/imagest1"
+            android:id="@+id/imagest1_dg"
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:layout_weight="1"
@@ -71,28 +71,28 @@
             />
 
         <ImageView
-            android:id="@+id/imagest2"
+            android:id="@+id/imagest2_dg"
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:layout_weight="1"
             android:background="@drawable/star" />
 
         <ImageView
-            android:id="@+id/imagest3"
+            android:id="@+id/imagest3_dg"
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:layout_weight="1"
             android:background="@drawable/star" />
 
         <ImageView
-            android:id="@+id/imagest4"
+            android:id="@+id/imagest4_dg"
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:layout_weight="1"
             android:background="@drawable/star" />
 
         <ImageView
-            android:id="@+id/imagest5"
+            android:id="@+id/imagest5_dg"
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:layout_weight="1"

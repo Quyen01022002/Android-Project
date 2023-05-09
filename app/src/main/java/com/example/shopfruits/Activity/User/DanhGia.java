@@ -120,11 +120,11 @@ public class DanhGia extends AppCompatActivity {
     }
     public void AnhXa()
     {
-        start_1=findViewById(R.id.imagest1);
-        start_2=findViewById(R.id.imagest2);
-        start_3=findViewById(R.id.imagest3);
-        start_4=findViewById(R.id.imagest4);
-        start_5=findViewById(R.id.imagest5);
+        start_1=findViewById(R.id.imagest1_dg);
+        start_2=findViewById(R.id.imagest2_dg);
+        start_3=findViewById(R.id.imagest3_dg);
+        start_4=findViewById(R.id.imagest4_dg);
+        start_5=findViewById(R.id.imagest5_dg);
         itemDH=findViewById(R.id.rc_product_dh);
     }
     public void danhgia(int id)

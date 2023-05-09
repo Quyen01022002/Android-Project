@@ -33,7 +33,8 @@ public class ChiTietDH_Activity extends AppCompatActivity {
     RecyclerView itemDH;
     TextView TrangThai;
     ConstraintLayout XacNhan;
-    OrderEnity orderEnity=new OrderEnity();;
+    OrderEnity orderEnity=new OrderEnity();
+
 
 
     @Override
@@ -42,12 +43,14 @@ public class ChiTietDH_Activity extends AppCompatActivity {
 
         setContentView(R.layout.chitietdonhang);
         XacNhan=findViewById(R.id.XacNhan_Constrian);
+
         Intent it=getIntent();
         TextView NguoiNhan=findViewById(R.id.tv_Ten);
         ImageView Avatar=findViewById(R.id.nguoiNhan_Avatar);
         User user=new User();
         user = SharePrefManager.getInstance(this).getUser();
         NguoiNhan.setText(user.getName());
+
 
         Glide.with(getApplicationContext()).load(user.getAvatar().toString().trim()).into(Avatar);
 
