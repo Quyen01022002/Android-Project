@@ -11,6 +11,7 @@ import com.example.shopfruits.Models.OrderEnity;
 import com.example.shopfruits.Models.OrderItemEnity;
 import com.example.shopfruits.Models.Product;
 import com.example.shopfruits.Models.Review;
+import com.example.shopfruits.Models.ReviewModel;
 import com.example.shopfruits.Models.Stores;
 import com.example.shopfruits.Models.User;
 
@@ -73,7 +74,9 @@ public interface APIService {
     Call<OrderEnity> getorder(@Field("orderID") int id);
     @POST("saveorderitem")
     Call<OrderItemEnity> saveCHiTietDH(@Body OrderItemEnity orderEnity);
-
+    @FormUrlEncoded
+    @POST("listdanhgia")
+    Call<List<ReviewModel>> getlistdanhgia(@Field("productID") int id);
     @POST("danhgia")
     Call<Review> Danhgia(@Body Review review);
     @FormUrlEncoded
