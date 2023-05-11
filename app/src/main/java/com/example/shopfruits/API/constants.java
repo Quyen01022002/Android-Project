@@ -1,7 +1,7 @@
 package com.example.shopfruits.API;
 
 public class constants {
-    public static String localhost = "192.168.192.92:8090";
+    public static String localhost = "192.168.42.182:8090";
 
 
 

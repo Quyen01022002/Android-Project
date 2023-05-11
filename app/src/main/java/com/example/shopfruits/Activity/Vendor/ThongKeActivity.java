@@ -6,6 +6,11 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.widget.Toast;
 
+import com.example.shopfruits.API.APIService;
+import com.example.shopfruits.API.RetrofitClient;
+import com.example.shopfruits.API.constants;
+import com.example.shopfruits.Activity.User.ThanhToanDialog;
+import com.example.shopfruits.Models.ThongKeModel;
 import com.example.shopfruits.R;
 import com.github.mikephil.charting.charts.CombinedChart;
 import com.github.mikephil.charting.charts.PieChart;
@@ -30,14 +35,37 @@ import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ThongKeActivity extends AppCompatActivity implements OnChartValueSelectedListener {
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
+public class ThongKeActivity extends AppCompatActivity implements OnChartValueSelectedListener {
+    APIService apiService;
+    int storeID;
     private CombinedChart mChart;
+    List<ThongKeModel> listDoanhThuNam;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_thongke);
+
+
+        apiService = RetrofitClient.getInstance().getRetrofit(constants.ROOT_URL).create(APIService.class);
+        apiService.getThongKeTheoThang(2022,1).enqueue(new Callback<List<ThongKeModel>>() {
+            @Override
+            public void onResponse(Call<List<ThongKeModel>> call, Response<List<ThongKeModel>> response) {
+                listDoanhThuNam=response.body();
+
+            }
+
+            @Override
+            public void onFailure(Call<List<ThongKeModel>> call, Throwable t) {
+                Toast.makeText(ThongKeActivity.this, "Không load được api", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
 
         mChart = (CombinedChart) findViewById(R.id.piechart);
         mChart.getDescription().setEnabled(false);
@@ -106,11 +134,17 @@ public class ThongKeActivity extends AppCompatActivity implements OnChartValueSe
     public void onNothingSelected() {
 
     }
+    private  DataSet dataChart() {
 
-    private static DataSet dataChart() {
+        APIService apiService1;
+
+
+
 
         LineData d = new LineData();
-        int[] data = new int[] { 1, 2, 2, 1, 1, 1, 2, 1, 1, 2, 1, 9 };
+
+
+        int[] data = new int[] { listDoanhThuNam.get(0).getDoanhthuthang(), 2, 2, listDoanhThuNam.get(2).getDoanhthuthang(), 1, 1, 2, 1, 1, 2, 1, 9 };
 
         ArrayList<Entry> entries = new ArrayList<Entry>();
 
@@ -133,5 +167,10 @@ public class ThongKeActivity extends AppCompatActivity implements OnChartValueSe
         d.addDataSet(set);
 
         return set;
+    }
+
+    public void getDataFromAPI(){
+
+
     }
 }

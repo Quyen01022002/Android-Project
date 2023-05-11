@@ -24,7 +24,7 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
-            android:name=".Activity.User.WelcomeActivity"
+            android:name=".Activity.Vendor.ThongKeActivity"
             android:exported="true"
             android:label="@string/app_name"
             android:theme="@style/Theme.ShopFruits.NoActionBar">
