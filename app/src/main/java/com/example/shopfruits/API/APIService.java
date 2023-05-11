@@ -40,6 +40,9 @@ public interface APIService {
     Call<List<Product>> sanphamstore(@Field("storeID") int id);
     @POST("savesanpham")
     Call<Product> savesp(@Body Product product);
+
+    @POST("dkshop")
+    Call<Stores> dkshop(@Body Stores st);
     @FormUrlEncoded
     @POST("sanphamcate")
     Call<List<Product>> sanphamcate(@Field("categoryID") int id);

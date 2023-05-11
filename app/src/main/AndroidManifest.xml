@@ -69,6 +69,9 @@
             android:name=".Activity.Vendor.ThemSPDialog"
             android:theme="@style/Theme.Material3.Light.Dialog" />
         <activity
+            android:name=".Activity.User.ThemShopDialog"
+            android:theme="@style/Theme.Material3.Light.Dialog" />
+        <activity
             android:name=".Activity.User.ChiTietDH_Activity"
             android:exported="false"
             android:theme="@style/Theme.ShopFruits.NoActionBar" />
