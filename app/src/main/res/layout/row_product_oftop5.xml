@@ -15,84 +15,55 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
+
         <ImageView
             android:id="@+id/img_sp_vendor"
             android:layout_width="80dp"
             android:layout_height="80dp"
-            android:layout_marginTop="12dp"
-            android:layout_marginBottom="16dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.2"
             app:srcCompat="@drawable/sp1" />
 
         <LinearLayout
             android:id="@+id/linearLayout4"
-            android:layout_width="200dp"
-            android:layout_height="match_parent"
+            android:layout_width="316dp"
+            android:layout_height="81dp"
+            android:layout_marginStart="8dp"
             android:orientation="vertical"
-            android:layout_marginStart="12dp"
-            android:layout_marginTop="12dp">
-<!--
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf=""
-            app:layout_constraintStart_toEndOf="@+id/img_sp_vendor"-->
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/img_sp_vendor"
+            app:layout_constraintTop_toTopOf="parent">
 
 
             <TextView
                 android:id="@+id/tv_namesp_vendor"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="18dp"
                 android:layout_weight="1"
                 android:text="Dâu Tây"
                 android:textSize="20dp" />
 
-
-            <LinearLayout
-                android:layout_width="match_parent"
+            <TextView
+                android:id="@+id/tv_countSp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
                 android:layout_weight="1"
-                android:orientation="horizontal"
-                android:weightSum="2">
+                android:text="Số lượng đã bán"
+                android:textColor="#000"
+                android:textSize="15dp"
 
-                <TextView
-                    android:id="@+id/tv_masanpham"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Mã sản phẩm:"
-                    android:textColor="#0BDC13"
-                    android:textSize="15dp"
-                    android:textStyle="bold" />
-                <TextView
-                    android:id="@+id/tv_id_sp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="SP001"
-                    android:textColor="#0BDC13"
-                    android:textSize="15dp"
-                    android:textStyle="bold" />
+                android:textStyle="bold"
+                app:layout_constraintStart_toEndOf="@+id/linearLayout4"
 
-            </LinearLayout>
-
+                />
 
 
         </LinearLayout>
-        <TextView
-            android:id="@+id/tv_doanhthuSp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="565.000 vnd"
-            android:textColor="#000"
-            android:textSize="15dp"
-            android:layout_marginTop="36dp"
-
-            android:textStyle="bold"
-            app:layout_constraintStart_toEndOf="@+id/linearLayout4"
-
-            />
-
 
         <TextView
             android:id="@+id/txr_id"
