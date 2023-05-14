@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -25,10 +26,13 @@ import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
+import com.bumptech.glide.Glide;
 import com.example.shopfruits.API.APIService;
 import com.example.shopfruits.API.RetrofitClient;
 import com.example.shopfruits.API.constants;
+import com.example.shopfruits.Models.Stores;
 import com.example.shopfruits.Models.User;
 import com.example.shopfruits.Pref.SharePrefManager;
 import com.example.shopfruits.R;
@@ -43,25 +47,80 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class edit_profile extends AppCompatActivity {
-    Button btnChoose,btnUpload;
-    EditText editTextUserName;
+public class editprofileDialog extends AppCompatActivity {
     APIService apiService;
+    Button btnChoose;
+    EditText editTenSP,email,phone;
+
     ImageView imageViewChoose, imageViewUpLoad;
 
     TextView textViewussername;
     private Uri mUri;
     private ProgressDialog mProgressDialog;
+    int cateid;
+    ConstraintLayout them;
     public static final int MY_REQUEST_CODE=100;
-    public static final String TAG =edit_profile.class.getName();
+    public static final String TAG = editprofileDialog.class.getName();
+
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        setContentView(R.layout.edit_profile);
+        them=findViewById(R.id.luu);
+
+        int dialogWidth = ViewGroup.LayoutParams.MATCH_PARENT;
+
+        int dialogHeight = ViewGroup.LayoutParams.MATCH_PARENT;
+        getWindow().setLayout(dialogWidth, dialogHeight);
+
+
+        AnhXa();
+        if(SharePrefManager.getInstance(this).isLoggedIn()){
+
+
+
+
+            User user=new User();
+            user = SharePrefManager.getInstance(this).getUser();
+            Log.d("loggs", "userLogin: " +user.getName());
+            editTenSP.setText(user.getName());
+            email.setText(user.getEmail());
+            phone.setText(user.getPhone());
+
+            Glide.with(getApplicationContext()).load(user.getAvatar()).into(imageViewChoose);
+
+        }
+        mProgressDialog=new ProgressDialog(editprofileDialog.this);
+        mProgressDialog.setMessage("Chờ đi cha nội......");
+        btnChoose.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                CheckPermission();
+            }
+        });
+        them.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                UploadImage1();
+            }
+        });
+
+
+    }
+
     private void AnhXa()
     {
-        btnChoose=findViewById(R.id.btnChoose);
-        btnUpload=findViewById(R.id.btnUpload);
-        imageViewUpLoad=findViewById(R.id.imgMultipart);
-        editTextUserName=findViewById(R.id.editUserName);
-        textViewussername=findViewById(R.id.tvUsername);
-        imageViewChoose=findViewById(R.id.imgChoose);
+        btnChoose=findViewById(R.id.buttonchon_anh);
+
+        imageViewUpLoad=findViewById(R.id.img_avatar);
+
+        imageViewChoose=findViewById(R.id.img_avatar);
+        editTenSP=findViewById(R.id.edit_tennnd);
+        email=findViewById(R.id.edit_email);
+        phone=findViewById(R.id.edit_phone);
+
 
 
     }
@@ -98,7 +157,7 @@ public class edit_profile extends AppCompatActivity {
         }
     }
     @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,@NonNull int[] grantResults)
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults)
     {
         super.onRequestPermissionsResult(requestCode,permissions,grantResults);
         if(requestCode==MY_REQUEST_CODE)
@@ -144,28 +203,6 @@ public class edit_profile extends AppCompatActivity {
                 }
             }
     );
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_editprofile);
-        AnhXa();
-        mProgressDialog=new ProgressDialog(edit_profile.this);
-        mProgressDialog.setMessage("Please wait upload......");
-        btnChoose.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                CheckPermission();
-            }
-        });
-        btnUpload.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(mUri!=null)
-                {
-                    UploadImage1();
-                }
-            }
-        });
-    }
     public void UploadImage1(){
         mProgressDialog.show();
         int useriD = SharePrefManager.getInstance(this).getuserID();
@@ -179,13 +216,16 @@ public class edit_profile extends AppCompatActivity {
         us = SharePrefManager.getInstance(this).getUser();
 
         us.setAvatar(IMAGE_PATH);
+        us.setName(editTenSP.getText().toString().trim());
+        us.setPhone(phone.getText().toString().trim());
+        us.setEmail(email.getText().toString().trim());
 
 
 
         apiService.update(us).enqueue(new Callback<User>() {
             @Override
             public void onResponse(Call<User> call, Response<User> response) {
-                Toast.makeText(edit_profile.this, "Da up load", Toast.LENGTH_SHORT).show();
+                Toast.makeText(editprofileDialog.this, "Da up load", Toast.LENGTH_SHORT).show();
             }
 
             @Override

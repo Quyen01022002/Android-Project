@@ -64,7 +64,7 @@ public class ThemShopDialog extends AppCompatActivity {
     int cateid;
     ConstraintLayout them;
     public static final int MY_REQUEST_CODE=100;
-    public static final String TAG = edit_profile.class.getName();
+    public static final String TAG = ThemShopDialog.class.getName();
 
 
     @Override
