@@ -59,6 +59,7 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:id="@+id/tk_dt"
+                android:background="@drawable/thongke"
                 android:layout_height="match_parent">
 
                 <ImageView
@@ -78,7 +79,7 @@
                     android:gravity="center"
                     android:text="Thống Kê"
                     android:textAllCaps="true"
-                    android:textColor="#109D58"
+                    android:textColor="#fff"
                     android:textSize="14sp"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -106,6 +107,7 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:id="@+id/ql_sp"
+                android:background="@drawable/quanlysanpham"
                 android:layout_height="match_parent">
 
                 <ImageView
@@ -125,7 +127,7 @@
                     android:gravity="center"
                     android:text="Quản Lý Sản Phẩm"
                     android:textAllCaps="true"
-                    android:textColor="#109D58"
+                    android:textColor="#fff"
                     android:textSize="14sp"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -166,6 +168,7 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:id="@+id/ql_dh"
+                android:background="#1CB7EB"
                 android:layout_height="match_parent">
 
                 <ImageView
@@ -185,7 +188,7 @@
                     android:gravity="center"
                     android:text="Quản Lý Đơn Hàng"
                     android:textAllCaps="true"
-                    android:textColor="#109D58"
+                    android:textColor="#fff"
                     android:textSize="14sp"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -212,6 +215,7 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
+                android:background="#FA6400"
                 android:layout_height="match_parent">
 
                 <ImageView
@@ -231,7 +235,7 @@
                     android:gravity="center"
                     android:text="Quản Lý Khách Hàng"
                     android:textAllCaps="true"
-                    android:textColor="#109D58"
+                    android:textColor="#fff"
                     android:textSize="14sp"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -270,6 +274,7 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
+                android:background="@drawable/quanlyshipper"
                 android:layout_height="match_parent">
 
                 <ImageView
@@ -290,7 +295,7 @@
                     android:gravity="center"
                     android:text="Quản Lý Shipper"
                     android:textAllCaps="true"
-                    android:textColor="#109D58"
+                    android:textColor="#fff"
                     android:textSize="14sp"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -317,6 +322,7 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
+                android:background="@drawable/dangxuat"
                 android:layout_height="match_parent">
 
                 <ImageView
@@ -337,7 +343,7 @@
                     android:gravity="center"
                     android:text="Đăng Xuất"
                     android:textAllCaps="true"
-                    android:textColor="#109D58"
+                    android:textColor="#fff"
                     android:textSize="14sp"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -360,7 +366,8 @@
         android:layout_marginEnd="16dp"
         app:layout_constraintEnd_toEndOf="@+id/view"
         app:layout_constraintTop_toTopOf="parent"
-        tools:srcCompat="@tools:sample/avatars" />
+        tools:srcCompat="@tools:sample/avatars"
+         />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="wrap_content"

@@ -18,6 +18,14 @@
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
     </style>
+    <style name="CircleImageView" parent="">
+        <item name="cornerSize">50%</item>
+        <item name="cornerFamily">rounded</item>
+    </style>
+    <style name="titile">
+        <item name="android:windowBackground">@drawable/thongke</item>
+        <!-- Các thuộc tính khác của theme sẽ được thêm vào đây -->
+    </style>
 
     <style name="Theme.ShopFruits.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 

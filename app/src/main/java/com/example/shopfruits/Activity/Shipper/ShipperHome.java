@@ -28,7 +28,7 @@ public class ShipperHome extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.quanlysdonhang);
+
     binding=ShipperhomeBinding.inflate(getLayoutInflater());
     setContentView(binding.getRoot());
        

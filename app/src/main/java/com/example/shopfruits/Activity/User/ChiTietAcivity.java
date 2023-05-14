@@ -22,6 +22,7 @@ import com.example.shopfruits.Adapter.ReviewAdapter;
 import com.example.shopfruits.Models.DonHang_Shop_Model;
 import com.example.shopfruits.Models.Product;
 import com.example.shopfruits.Models.ReviewModel;
+import com.example.shopfruits.Models.Stores;
 import com.example.shopfruits.R;
 
 import java.util.List;
@@ -32,7 +33,7 @@ import retrofit2.Response;
 
 public class ChiTietAcivity extends AppCompatActivity {
     APIService apiService;
-    TextView Ten,Gia,MoTa,mua;
+    TextView Ten,Gia,MoTa,mua,tenshop;
     ImageView anh;
     ImageView QuayLai;
     ConstraintLayout danhgia,mota;
@@ -129,6 +130,19 @@ public class ChiTietAcivity extends AppCompatActivity {
                 Gia.setText(gia);
                 MoTa.setText(pd.getDescription());
                 Glide.with(getApplicationContext()).load(pd.getImg().toString().trim()).into(anh);
+                apiService.getstorebyid(pd.getStoreID()).enqueue(new Callback<Stores>() {
+                    @Override
+                    public void onResponse(Call<Stores> call, Response<Stores> response) {
+                        Stores st=new Stores();
+                        st=response.body();
+                        tenshop.setText(st.getName());
+                    }
+
+                    @Override
+                    public void onFailure(Call<Stores> call, Throwable t) {
+
+                    }
+                });
 
             }
 
@@ -154,6 +168,7 @@ public class ChiTietAcivity extends AppCompatActivity {
         QuayLai=findViewById(R.id.quaylai);
         mota=findViewById(R.id.mota);
         danhgia=findViewById(R.id.danhgia);
+        tenshop=findViewById(R.id.tenshop);
 
     }
 }

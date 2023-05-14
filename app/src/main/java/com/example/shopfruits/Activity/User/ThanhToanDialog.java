@@ -46,6 +46,7 @@ public class ThanhToanDialog extends AppCompatActivity {
         soluong=findViewById(R.id.soluong_TT);
         int dialogHeight = ViewGroup.LayoutParams.WRAP_CONTENT;
         getWindow().setLayout(dialogWidth, dialogHeight);
+
         TextView DiaChi_Ten=findViewById(R.id.diachi_ten);
         DiaChi_diachi=findViewById(R.id.diachi);
         Sdt=findViewById(R.id.diachi_sdt);

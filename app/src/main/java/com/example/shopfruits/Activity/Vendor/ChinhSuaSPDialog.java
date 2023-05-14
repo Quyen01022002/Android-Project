@@ -34,7 +34,8 @@ import com.bumptech.glide.Glide;
 import com.example.shopfruits.API.APIService;
 import com.example.shopfruits.API.RetrofitClient;
 import com.example.shopfruits.API.constants;
-import com.example.shopfruits.Activity.User.edit_profile;
+
+import com.example.shopfruits.Activity.User.profile;
 import com.example.shopfruits.Adapter.OptionAdapter;
 import com.example.shopfruits.Models.Category;
 import com.example.shopfruits.Models.Product;
@@ -64,7 +65,7 @@ public class ChinhSuaSPDialog extends AppCompatActivity {
     int cateid;
     ConstraintLayout them;
     public static final int MY_REQUEST_CODE=100;
-    public static final String TAG = edit_profile.class.getName();
+    public static final String TAG = profile.class.getName();
     Spinner mySpinner;
 
     @Override

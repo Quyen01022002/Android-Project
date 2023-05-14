@@ -60,15 +60,6 @@ public class VendorActivity extends AppCompatActivity {
                 startActivity(it);
             }
         });
-
-        ThongKe.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent it=new Intent(VendorActivity.this, ThongKeActivity.class);
-
-                startActivity(it);
-            }
-        });
         apiService.getstorebyid(Integer.parseInt(id)).enqueue(new Callback<Stores>() {
             @Override
             public void onResponse(Call<Stores> call, Response<Stores> response) {
