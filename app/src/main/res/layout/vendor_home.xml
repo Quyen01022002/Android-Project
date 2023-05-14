@@ -216,6 +216,7 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:background="#FA6400"
+                android:id="@+id/ql_kh"
                 android:layout_height="match_parent">
 
                 <ImageView
@@ -274,6 +275,7 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
+                android:id="@+id/ql_shp"
                 android:background="@drawable/quanlyshipper"
                 android:layout_height="match_parent">
 

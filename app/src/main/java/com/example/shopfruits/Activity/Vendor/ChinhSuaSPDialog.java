@@ -63,7 +63,7 @@ public class ChinhSuaSPDialog extends AppCompatActivity {
     int cateid;
     ConstraintLayout chinhsua;
     public static final int MY_REQUEST_CODE=100;
-    public static final String TAG = SuaSPDialog.class.getName();
+    public static final String TAG = ChinhSuaSPDialog.class.getName();
     Spinner mySpinner;
 
     @Override

@@ -29,7 +29,6 @@ public class QuanLyShipperActivity extends AppCompatActivity {
     UserAdapter userAdapter;
     List<User> userList;
     RecyclerView rcUser;
-    ConstraintLayout ThemSP;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
