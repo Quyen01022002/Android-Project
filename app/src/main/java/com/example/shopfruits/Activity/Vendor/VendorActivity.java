@@ -22,7 +22,8 @@ import retrofit2.Response;
 public class VendorActivity extends AppCompatActivity {
     APIService apiService;
     TextView tenshop;
-    ConstraintLayout QL_SP,QL_DH,ThongKe;
+    ConstraintLayout QL_SP,QL_DH, TK_DT;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,7 +31,7 @@ public class VendorActivity extends AppCompatActivity {
     tenshop=findViewById(R.id.tv_vendor_tenshop);
     QL_SP=findViewById(R.id.ql_sp);
     QL_DH=findViewById(R.id.ql_dh);
-    ThongKe=findViewById(R.id.thongke);
+    TK_DT=findViewById(R.id.tk_dt);
         apiService = RetrofitClient.getInstance().getRetrofit(constants.ROOT_URL).create(APIService.class);
         Intent intent = getIntent();
         String id= intent.getStringExtra("idst");
@@ -48,6 +49,14 @@ public class VendorActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent it=new Intent(VendorActivity.this, QuanLyDonHang.class);
                 it.putExtra("idst", id);
+                startActivity(it);
+            }
+        });
+        TK_DT.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent it=new Intent(VendorActivity.this, ThongKeActivity.class);
+                it.putExtra("idst",id);
                 startActivity(it);
             }
         });

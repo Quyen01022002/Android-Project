@@ -10,9 +10,11 @@ import com.example.shopfruits.Models.DonHang_Shop_Model;
 import com.example.shopfruits.Models.OrderEnity;
 import com.example.shopfruits.Models.OrderItemEnity;
 import com.example.shopfruits.Models.Product;
+import com.example.shopfruits.Models.ProductOnTop5;
 import com.example.shopfruits.Models.Review;
 import com.example.shopfruits.Models.ReviewModel;
 import com.example.shopfruits.Models.Stores;
+import com.example.shopfruits.Models.ThongKeModel;
 import com.example.shopfruits.Models.User;
 
 import java.util.List;
@@ -123,4 +125,20 @@ public interface APIService {
     Call<Product>updateproduct(@Body Product product);
     @DELETE("/cart/{id}")
     Call<Void> deleteProduct(@Path("id") int id);
+    @FormUrlEncoded
+    @POST("thongke")
+    Call<List<ThongKeModel>> getThongKeTheoThang(@Field("year") int year, @Field("storeID") int id);
+
+    @FormUrlEncoded
+    @POST("gettop5productofstore")
+    Call<List<ProductOnTop5>>getTop5ProOfStore(@Field("storeID") int storeID, @Field("year") int year);
+
+
+
+    @FormUrlEncoded
+    @POST
+    Call <Product> chinhSuaProduct(@Body Product product);
 }
+
+
+
