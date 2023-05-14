@@ -47,7 +47,27 @@
                 app:layout_constraintBottom_toTopOf="@+id/editProfileB"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView3">
+                app:layout_constraintTop_toBottomOf="@+id/profile_email">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/textView19"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:text="Phone:" />
+
+                    <TextView
+                        android:id="@+id/profile_phone"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:text="TextView" />
+                </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -62,7 +82,7 @@
                         android:text="User ID:" />
 
                     <TextView
-                        android:id="@+id/textView16"
+                        android:id="@+id/profile_userID"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
@@ -90,14 +110,14 @@
                     android:orientation="horizontal">
 
                     <TextView
-                        android:id="@+id/textView19"
+                        android:id="@+id/textdiachi"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:text="Phone:" />
+                        android:text="Địa chỉ:"/>
 
                     <TextView
-                        android:id="@+id/textView120"
+                        android:id="@+id/profile_diachi"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
@@ -106,7 +126,7 @@
             </LinearLayout>
 
             <TextView
-                android:id="@+id/textView2"
+                android:id="@+id/profile_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -120,19 +140,19 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/textView3"
+                android:id="@+id/profile_email"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
                 android:text="College Name"
                 android:textColor="@android:color/black"
                 android:textSize="14sp"
-                app:layout_constraintStart_toStartOf="@+id/textView2"
-                app:layout_constraintTop_toBottomOf="@+id/textView2" />
+                app:layout_constraintStart_toStartOf="@+id/profile_name"
+                app:layout_constraintTop_toBottomOf="@+id/profile_name" />
 
 
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/editProfileB"
+                android:id="@+id/edit_profile_btn"
                 style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -145,7 +165,7 @@
                 tools:ignore="MissingConstraints" />
 
             <ImageView
-                android:id="@+id/imageView7"
+                android:id="@+id/profile_avatar"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_marginTop="16dp"

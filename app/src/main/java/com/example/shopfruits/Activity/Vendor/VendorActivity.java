@@ -23,6 +23,7 @@ public class VendorActivity extends AppCompatActivity {
     APIService apiService;
     TextView tenshop;
     ConstraintLayout QL_SP,QL_DH, TK_DT;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,6 +61,14 @@ public class VendorActivity extends AppCompatActivity {
             }
         });
 
+        ThongKe.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent it=new Intent(VendorActivity.this, ThongKeActivity.class);
+
+                startActivity(it);
+            }
+        });
         apiService.getstorebyid(Integer.parseInt(id)).enqueue(new Callback<Stores>() {
             @Override
             public void onResponse(Call<Stores> call, Response<Stores> response) {

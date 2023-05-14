@@ -52,10 +52,6 @@
             android:exported="false"
             android:theme="@style/Theme.ShopFruits.NoActionBar"></activity>
         <activity
-            android:name=".Activity.User.edit_profile"
-            android:exported="false"
-            android:theme="@style/Theme.ShopFruits.NoActionBar"></activity>
-        <activity
             android:name=".Activity.Vendor.VendorActivity"
             android:exported="false"
             android:theme="@style/Theme.ShopFruits.NoActionBar"></activity>
@@ -79,6 +75,9 @@
             android:name=".Activity.User.ThemShopDialog"
             android:theme="@style/Theme.Material3.Light.Dialog" />
         <activity
+            android:name=".Activity.User.editprofileDialog"
+            android:theme="@style/Theme.Material3.Light.Dialog" />
+        <activity
             android:name=".Activity.User.ChiTietDH_Activity"
             android:exported="false"
             android:theme="@style/Theme.ShopFruits.NoActionBar" />
@@ -94,6 +93,11 @@
             android:name=".Activity.Vendor.QuanLyDonHang"
             android:exported="false"
             android:theme="@style/Theme.ShopFruits.NoActionBar" />
+
+        <activity
+            android:name=".Activity.Vendor.ThongKeActivity"
+            android:exported="false"
+            android:theme="@style/Theme.ShopFruits.NoActionBar" />
         <activity
             android:name=".Activity.Shipper.ShipperHome"
             android:exported="false"
@@ -103,5 +107,6 @@
             android:exported="false"
             android:theme="@style/Theme.ShopFruits.NoActionBar" />
     </application>
+
 
 </manifest>
