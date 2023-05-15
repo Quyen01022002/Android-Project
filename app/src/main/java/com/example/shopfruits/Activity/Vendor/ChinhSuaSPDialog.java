@@ -34,8 +34,6 @@ import com.bumptech.glide.Glide;
 import com.example.shopfruits.API.APIService;
 import com.example.shopfruits.API.RetrofitClient;
 import com.example.shopfruits.API.constants;
-
-import com.example.shopfruits.Activity.User.profile;
 import com.example.shopfruits.Adapter.OptionAdapter;
 import com.example.shopfruits.Models.Category;
 import com.example.shopfruits.Models.Product;
@@ -63,9 +61,9 @@ public class ChinhSuaSPDialog extends AppCompatActivity {
     private Uri mUri;
     private ProgressDialog mProgressDialog;
     int cateid;
-    ConstraintLayout them;
+    ConstraintLayout chinhsua;
     public static final int MY_REQUEST_CODE=100;
-    public static final String TAG = profile.class.getName();
+    public static final String TAG = ChinhSuaSPDialog.class.getName();
     Spinner mySpinner;
 
     @Override
@@ -73,13 +71,13 @@ public class ChinhSuaSPDialog extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.chinhsuasanpham);
-        them=findViewById(R.id.chinhsua);
+        chinhsua=findViewById(R.id.chinhsua);
 
         int dialogWidth = ViewGroup.LayoutParams.MATCH_PARENT;
 
         int dialogHeight = ViewGroup.LayoutParams.MATCH_PARENT;
         getWindow().setLayout(dialogWidth, dialogHeight);
-         mySpinner = findViewById(R.id.my_spinner);
+        mySpinner = findViewById(R.id.my_spinner);
 
         getCategory();
         mySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -97,27 +95,6 @@ public class ChinhSuaSPDialog extends AppCompatActivity {
             }
         });
         AnhXa();
-        apiService= RetrofitClient.getInstance().getRetrofit(constants.ROOT_URL).create(APIService.class);
-        apiService.chitiet(21).enqueue(new Callback<Product>() {
-            @Override
-            public void onResponse(Call<Product> call, Response<Product> response) {
-                Product pro= response.body();
-                editTenSP.setText(pro.getName());
-                sl.setText(pro.getQuantity());
-                mota.setText(pro.getDescription());
-                gia.setText(pro.getPrice());
-                Glide.with(getApplicationContext()).load(pro.getImg().toString().trim()).into(imageViewUpLoad);
-
-            }
-
-            @Override
-            public void onFailure(Call<Product> call, Throwable t) {
-
-            }
-        });
-
-
-
         mProgressDialog=new ProgressDialog(ChinhSuaSPDialog.this);
         mProgressDialog.setMessage("Chờ đi cha nội......");
         btnChoose.setOnClickListener(new View.OnClickListener() {
@@ -126,10 +103,34 @@ public class ChinhSuaSPDialog extends AppCompatActivity {
                 CheckPermission();
             }
         });
-        them.setOnClickListener(new View.OnClickListener() {
+        chinhsua.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 UploadImage1();
+            }
+        });
+        getProduct();
+
+    }
+
+    private void getProduct(){
+        //apiService= RetrofitClient.getInstance().getRetrofit(constants.ROOT_URL).create(APIService.class);
+
+        apiService.chitiet(21).enqueue(new Callback<Product>() {
+            @Override
+            public void onResponse(Call<Product> call, Response<Product> response) {
+                Product pro= response.body();
+                editTenSP.setText(pro.getName());
+                sl.setText(String.valueOf(pro.getQuantity()));
+                mota.setText(pro.getDescription());
+                gia.setText(String.valueOf(pro.getPrice()));
+                Glide.with(getApplicationContext()).load(pro.getImg().toString().trim()).into(imageViewUpLoad);
+
+            }
+
+            @Override
+            public void onFailure(Call<Product> call, Throwable t) {
+
             }
         });
 
@@ -270,10 +271,10 @@ public class ChinhSuaSPDialog extends AppCompatActivity {
         us.setCategoryID(cateid);
 
 
-        apiService.savesp(us).enqueue(new Callback<Product>() {
+        apiService.chinhSuaProduct(us).enqueue(new Callback<Product>() {
             @Override
             public void onResponse(Call<Product> call, Response<Product> response) {
-                Toast.makeText(ChinhSuaSPDialog.this, "Đã thêm", Toast.LENGTH_SHORT).show();
+                Toast.makeText(ChinhSuaSPDialog.this, "Đã chỉnh sửax", Toast.LENGTH_SHORT).show();
                 Intent it=new Intent(ChinhSuaSPDialog.this, QuanLySPActivity.class);
                 it.putExtra("idst", storeID);
                 startActivity(it);

@@ -93,7 +93,14 @@
             android:name=".Activity.Vendor.QuanLyDonHang"
             android:exported="false"
             android:theme="@style/Theme.ShopFruits.NoActionBar" />
-
+        <activity
+            android:name=".Activity.Vendor.QuanLyKhachHang"
+            android:exported="false"
+            android:theme="@style/Theme.ShopFruits.NoActionBar" />
+        <activity
+            android:name=".Activity.Vendor.QuanLyShipperActivity"
+            android:exported="false"
+            android:theme="@style/Theme.ShopFruits.NoActionBar" />
 
         <activity
             android:name=".Activity.Shipper.ShipperHome"
