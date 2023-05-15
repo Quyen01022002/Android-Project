@@ -53,6 +53,7 @@ import retrofit2.Response;
 public class ChinhSuaSPDialog extends AppCompatActivity {
     APIService apiService;
     Button btnChoose;
+    String idPro;
     EditText editTenSP,sl,mota,gia;
 
     ImageView imageViewChoose, imageViewUpLoad;
@@ -61,6 +62,7 @@ public class ChinhSuaSPDialog extends AppCompatActivity {
     private Uri mUri;
     private ProgressDialog mProgressDialog;
     int cateid;
+
     ConstraintLayout chinhsua;
     public static final int MY_REQUEST_CODE=100;
     public static final String TAG = ChinhSuaSPDialog.class.getName();
@@ -109,14 +111,17 @@ public class ChinhSuaSPDialog extends AppCompatActivity {
                 UploadImage1();
             }
         });
-        getProduct();
+
+        Intent intent = getIntent();
+        idPro= intent.getStringExtra("idProduct");
+        getProduct(Integer.parseInt(idPro));
 
     }
 
-    private void getProduct(){
+    private void getProduct(int idPro){
         //apiService= RetrofitClient.getInstance().getRetrofit(constants.ROOT_URL).create(APIService.class);
 
-        apiService.chitiet(21).enqueue(new Callback<Product>() {
+        apiService.chitiet(idPro).enqueue(new Callback<Product>() {
             @Override
             public void onResponse(Call<Product> call, Response<Product> response) {
                 Product pro= response.body();
@@ -258,7 +263,7 @@ public class ChinhSuaSPDialog extends AppCompatActivity {
 
         Product us = new Product();
 
-
+        us.setProductID(Integer.parseInt(idPro));
         us.setImg(IMAGE_PATH);
         us.setName(String.valueOf(editTenSP.getText().toString().trim()));
         us.setPrice(Integer.parseInt(gia.getText().toString().trim()));
@@ -271,10 +276,10 @@ public class ChinhSuaSPDialog extends AppCompatActivity {
         us.setCategoryID(cateid);
 
 
-        apiService.chinhSuaProduct(us).enqueue(new Callback<Product>() {
+        apiService.updateproduct(us).enqueue(new Callback<Product>() {
             @Override
             public void onResponse(Call<Product> call, Response<Product> response) {
-                Toast.makeText(ChinhSuaSPDialog.this, "Đã chỉnh sửax", Toast.LENGTH_SHORT).show();
+                Toast.makeText(ChinhSuaSPDialog.this, "Đã chỉnh sửa", Toast.LENGTH_SHORT).show();
                 Intent it=new Intent(ChinhSuaSPDialog.this, QuanLySPActivity.class);
                 it.putExtra("idst", storeID);
                 startActivity(it);

@@ -56,7 +56,7 @@ public class ProductAdapter_Vendor extends RecyclerView.Adapter<ProductAdapter_V
                     Toast.makeText(context,"Bạn đã chọn product"+idsp.getText().toString(), Toast.LENGTH_SHORT).show();
                     Product product = new Product();
                     Intent it=new Intent(context, ChinhSuaSPDialog.class);
-                    it.putExtra("id", idsp.getText());
+                    it.putExtra("idProduct", idsp.getText());
 
                     context.startActivity(it);
                 }
