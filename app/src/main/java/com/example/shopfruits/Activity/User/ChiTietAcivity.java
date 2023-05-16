@@ -20,11 +20,14 @@ import com.example.shopfruits.API.constants;
 import com.example.shopfruits.Adapter.DonHang_ShopAdapter;
 import com.example.shopfruits.Adapter.ReviewAdapter;
 import com.example.shopfruits.Models.DonHang_Shop_Model;
+import com.example.shopfruits.Models.FollowUsserModel;
 import com.example.shopfruits.Models.Product;
 import com.example.shopfruits.Models.ReviewModel;
 import com.example.shopfruits.Models.Stores;
+import com.example.shopfruits.Pref.SharePrefManager;
 import com.example.shopfruits.R;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
@@ -36,8 +39,10 @@ public class ChiTietAcivity extends AppCompatActivity {
     TextView Ten,Gia,MoTa,mua,tenshop;
     ImageView anh;
     ImageView QuayLai;
+    List<FollowUsserModel> fl=new ArrayList<>();
     ConstraintLayout danhgia,mota;
     ScrollView danhgialist;
+    TextView theodoi;
     ImageView start_1,start_2,start_3,start_4,start_5;
     private static final int REQUEST_CODE_MY_DIALOG = 1;
     @Override
@@ -52,6 +57,7 @@ public class ChiTietAcivity extends AppCompatActivity {
         Intent intent = getIntent();
         String id= intent.getStringExtra("id");
         int idsp=Integer.parseInt (id);
+
         mota.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -136,6 +142,7 @@ public class ChiTietAcivity extends AppCompatActivity {
                         Stores st=new Stores();
                         st=response.body();
                         tenshop.setText(st.getName());
+                        checkFollow(st.getStoreID());
                     }
 
                     @Override
@@ -154,8 +161,82 @@ public class ChiTietAcivity extends AppCompatActivity {
 
     }
 
+    public void checkFollow(int strid)
+    {
+        int iduser = SharePrefManager.getInstance(this).getuserID();
+        apiService= RetrofitClient.getInstance().getRetrofit(constants.ROOT_URL).create(APIService.class);
+        apiService.CheckFollow(iduser,strid).enqueue(new Callback<List<FollowUsserModel>>() {
+            @Override
+            public void onResponse(Call<List<FollowUsserModel>> call, Response<List<FollowUsserModel>> response) {
+
+                fl=response.body();
+                if(fl.size()==0)
+                {
+                    theodoi.setText("Theo Dõi");
+                    theodoi.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            follow(strid,iduser);
+                            finish();
+                        }
+                    });
+                }
+                else {
+                    theodoi.setText("Đang Theo Dõi");
+                    theodoi.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            unfollow(fl.get(0).getId());
+                            finish();
+                        }
+                    });
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<FollowUsserModel>> call, Throwable t) {
+
+            }
+        });
 
 
+    }
+    public void unfollow(int id)
+    {
+        apiService= RetrofitClient.getInstance().getRetrofit(constants.ROOT_URL).create(APIService.class);
+        FollowUsserModel fl=new FollowUsserModel();
+
+        apiService.unfollow(id).enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+
+            }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+
+            }
+        });
+    }
+public void follow(int stid,int userid)
+{
+    apiService= RetrofitClient.getInstance().getRetrofit(constants.ROOT_URL).create(APIService.class);
+    FollowUsserModel fl=new FollowUsserModel();
+    fl.setIsDeleted(true);
+    fl.setStoreID(stid);
+    fl.setUserID(userid);
+    apiService.follow(fl).enqueue(new Callback<FollowUsserModel>() {
+        @Override
+        public void onResponse(Call<FollowUsserModel> call, Response<FollowUsserModel> response) {
+
+        }
+
+        @Override
+        public void onFailure(Call<FollowUsserModel> call, Throwable t) {
+
+        }
+    });
+}
 
 
     public void AnhXa()
@@ -169,6 +250,7 @@ public class ChiTietAcivity extends AppCompatActivity {
         mota=findViewById(R.id.mota);
         danhgia=findViewById(R.id.danhgia);
         tenshop=findViewById(R.id.tenshop);
+        theodoi=findViewById(R.id.theodoi);
 
     }
 }

@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -50,6 +51,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyViewHolder> 
         public ImageView images;
         public TextView tenSp,id,gia;
         public ConstraintLayout Xoa;
+        public CheckBox chon;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             images=itemView.findViewById(R.id.img_cart);
@@ -57,6 +59,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyViewHolder> 
             gia=itemView.findViewById(R.id.tv_giaCart);
             id=itemView.findViewById(R.id.txr_id);
             Xoa=itemView.findViewById(R.id.xoa);
+            chon=itemView.findViewById(R.id.checkBox);
             Xoa.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {

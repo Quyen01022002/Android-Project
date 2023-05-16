@@ -1,5 +1,7 @@
 package com.example.shopfruits.Models;
 
+import java.util.Date;
+
 public class OrderEnity {
 
 
@@ -29,10 +31,10 @@ public class OrderEnity {
 
 
 
-    private String createdAt;
+    private Date createdAt;
 
 
-    private String updatedAt;
+    private Date updatedAt;
 
     public int getOrderID() {
         return orderID;
@@ -106,19 +108,19 @@ public class OrderEnity {
         this.costSum = costSum;
     }
 
-    public String getCreatedAt() {
+    public Date getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(String createdAt) {
+    public void setCreatedAt(Date createdAt) {
         this.createdAt = createdAt;
     }
 
-    public String getUpdatedAt() {
+    public Date getUpdatedAt() {
         return updatedAt;
     }
 
-    public void setUpdatedAt(String updatedAt) {
+    public void setUpdatedAt(Date updatedAt) {
         this.updatedAt = updatedAt;
     }
 

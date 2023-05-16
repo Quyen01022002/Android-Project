@@ -7,6 +7,7 @@ import com.example.shopfruits.Models.Category;
 import com.example.shopfruits.Models.DiaChi;
 import com.example.shopfruits.Models.DonHangModel;
 import com.example.shopfruits.Models.DonHang_Shop_Model;
+import com.example.shopfruits.Models.FollowUsserModel;
 import com.example.shopfruits.Models.OrderEnity;
 import com.example.shopfruits.Models.OrderItemEnity;
 import com.example.shopfruits.Models.Product;
@@ -42,6 +43,8 @@ public interface APIService {
     Call<List<Product>> sanphamstore(@Field("storeID") int id);
     @POST("savesanpham")
     Call<Product> savesp(@Body Product product);
+    @POST("theodoi")
+    Call<FollowUsserModel> follow(@Body FollowUsserModel fl);
 
     @POST("dkshop")
     Call<Stores> dkshop(@Body Stores st);
@@ -108,6 +111,12 @@ public interface APIService {
     @POST("DHshipper")
     Call<List<DonHang_Shop_Model>>GetTrangThaishiper(@Field("shipperID") int id,@Field("status")  String status);
     @FormUrlEncoded
+    @POST("timkiem")
+    Call<List<Product>>timkiem(@Field("key")  String key);
+    @FormUrlEncoded
+    @POST("followed")
+    Call<List<FollowUsserModel>> CheckFollow(@Field("userID") int id, @Field("storeID")  int storeID);
+    @FormUrlEncoded
     @POST("getstore")
     Call<List<Stores>>getstore(@Field("ownerID") int id);
     @FormUrlEncoded
@@ -125,6 +134,8 @@ public interface APIService {
     Call<Product>updateproduct(@Body Product product);
     @DELETE("/cart/{id}")
     Call<Void> deleteProduct(@Path("id") int id);
+    @DELETE("/follow/{id}")
+    Call<Void> unfollow(@Path("id") int id);
     @FormUrlEncoded
     @POST("thongke")
     Call<List<ThongKeModel>> getThongKeTheoThang(@Field("year") int year, @Field("storeID") int id);

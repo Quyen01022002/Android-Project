@@ -236,186 +236,205 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/nguoinhan">
 
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/Da_Xac_Nhan02"
-                    android:layout_width="15dp"
-                    android:layout_height="15dp"
-                    android:layout_marginStart="8dp"
-                    android:visibility="gone"
-                    android:layout_marginTop="1dp"
-                    android:background="@drawable/tron"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/Da_Dong_Goi">
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/Nut_Da_Dong_Goi"
-                    android:layout_width="15dp"
-                    android:layout_height="15dp"
-                    android:visibility="gone"
-                    android:layout_marginStart="10dp"
-                    android:background="@drawable/tron"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/Dang_Giao">
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-                <TextView
-                    android:id="@+id/tv_Dang_Giao"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginTop="50dp"
-                    android:text="Đang giao"
-                    android:visibility="gone"
-                    android:textColor="#05237C"
-                    android:textStyle="bold"
-                    app:layout_constraintStart_toEndOf="@+id/Nut_Dang_Giao"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_Da_Giao" />
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/Nut_Dang_Giao"
-                    android:layout_width="15dp"
-                    android:layout_height="15dp"
-                    android:layout_marginStart="10dp"
-                    android:visibility="gone"
-                    android:layout_marginTop="4dp"
-                    android:background="@drawable/tron"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/Da_Giao">
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-                <TextView
-                    android:id="@+id/tv_Da_Giao"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:visibility="gone"
-                    android:layout_marginTop="20dp"
-                    android:text="Đã giao"
-                    android:textColor="#05237C"
-                    android:textStyle="bold"
-                    app:layout_constraintStart_toEndOf="@+id/Nut_Da_Giao"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/Nut_Da_Giao"
-                    android:layout_width="15dp"
-                    android:layout_height="15dp"
-                    android:visibility="gone"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="20dp"
-                    android:background="@drawable/tron"
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="24dp"
+                    android:orientation="vertical"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent">
 
-                </androidx.constraintlayout.widget.ConstraintLayout>
 
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/Da_Giao"
-                    android:layout_width="2dp"
-                    android:layout_height="50dp"
-                    android:visibility="gone"
-                    android:layout_marginStart="17dp"
-                    android:layout_marginTop="2dp"
-                    android:background="@drawable/line"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/Nut_Da_Giao" />
 
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/Dang_Giao"
-                    android:layout_width="2dp"
-                    android:layout_height="50dp"
-                    android:layout_marginStart="17dp"
-                    android:visibility="gone"
-                    android:layout_marginTop="2dp"
-                    android:background="@drawable/line"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/Nut_Dang_Giao">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:id="@+id/DaGiao_lin"
+                        android:visibility="gone"
+                        android:orientation="horizontal">
 
-                </androidx.constraintlayout.widget.ConstraintLayout>
+                        <androidx.constraintlayout.widget.ConstraintLayout
 
-                <TextView
-                    android:id="@+id/tv_Da_Dong_Goi"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginTop="50dp"
-                    android:text="Đã đóng gói"
-                    android:visibility="gone"
-                    android:textColor="#05237C"
-                    android:textStyle="bold"
-                    app:layout_constraintStart_toEndOf="@+id/Nut_Da_Dong_Goi"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_Dang_Giao" />
+                            android:layout_width="15dp"
+                            android:layout_height="15dp"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginTop="1dp"
+                            android:background="@drawable/tron">
 
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/Da_Dong_Goi"
-                    android:layout_width="2dp"
-                    android:layout_height="50dp"
-                    android:visibility="gone"
-                    android:layout_marginStart="17dp"
-                    android:layout_marginTop="2dp"
-                    android:background="@drawable/line"
-                    app:layout_constraintBottom_toTopOf="@+id/Da_Xac_Nhan"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/Nut_Da_Dong_Goi">
 
-                </androidx.constraintlayout.widget.ConstraintLayout>
+                        </androidx.constraintlayout.widget.ConstraintLayout>
 
-                <TextView
-                    android:id="@+id/tv_Da_Xac_Nhan"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:visibility="gone"
-                    android:layout_marginTop="48dp"
-                    android:text="Đã xác nhận"
-                    android:textColor="#05237C"
-                    android:textStyle="bold"
-                    app:layout_constraintStart_toEndOf="@+id/Da_Xac_Nhan02"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_Da_Dong_Goi" />
+                        <TextView
+                            android:id="@+id/tv_Da_Giao"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:text="Đã giao"
+                            android:textColor="#05237C"
+                            android:textStyle="bold" />
 
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/Da_Xac_Nhan"
-                    android:layout_width="2dp"
-                    android:layout_height="50dp"
-                    android:layout_marginStart="17dp"
-                    android:visibility="gone"
-                    android:layout_marginTop="2dp"
-                    android:background="@drawable/line"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/Da_Xac_Nhan02">
+                    </LinearLayout>
 
-                </androidx.constraintlayout.widget.ConstraintLayout>
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/Da_Giao"
+                        android:layout_width="2dp"
+                        android:layout_height="50dp"
+                        android:visibility="gone"
+                        android:layout_marginStart="17dp"
+                        android:layout_marginTop="2dp"
+                        android:background="@drawable/line" />
 
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/chuaxacnhan"
-                    android:layout_width="15dp"
-                    android:layout_height="15dp"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginTop="2dp"
-                    android:background="@drawable/tron"
-                    android:visibility="gone"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/Da_Xac_Nhan">
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/Nut_Dang_Giao"
+                        android:visibility="gone"
+                        android:orientation="horizontal">
 
-                </androidx.constraintlayout.widget.ConstraintLayout>
+                        <androidx.constraintlayout.widget.ConstraintLayout
 
-                <TextView
-                    android:id="@+id/tv_chuaxacnhan"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginTop="48dp"
-                    android:layout_marginBottom="36dp"
-                    android:text="Chưa Xác Nhận"
-                    android:textColor="#05237C"
-                    android:textStyle="bold"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/chuaxacnhan"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_Da_Xac_Nhan" />
+                            android:layout_width="15dp"
+                            android:layout_height="15dp"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginTop="4dp"
+                            android:background="@drawable/tron">
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                        <TextView
+                            android:id="@+id/tv_Dang_Giao"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:text="Đang giao"
+                            android:textColor="#05237C"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/Dang_Giao"
+                        android:layout_width="2dp"
+                        android:layout_height="50dp"
+                        android:layout_marginStart="17dp"
+                        android:visibility="gone"
+                        android:layout_marginTop="2dp"
+                        android:background="@drawable/line">
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/Nut_Da_Dong_Goi"
+                        android:visibility="gone"
+                        android:orientation="horizontal">
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+
+                            android:layout_width="15dp"
+                            android:layout_marginStart="10dp"
+                            android:layout_height="15dp"
+                            android:background="@drawable/tron">
+
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                        <TextView
+                            android:id="@+id/tv_Da_Dong_Goi"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Đã đóng gói"
+                            android:textColor="#05237C"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/Da_DG"
+                        android:layout_width="2dp"
+                        android:layout_height="50dp"
+                        android:layout_marginStart="17dp"
+                        android:visibility="gone"
+                        android:background="@drawable/line"
+                        app:layout_constraintStart_toStartOf="parent"
+                        >
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <LinearLayout
+                        android:id="@+id/DaXN"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:visibility="gone"
+                        tools:layout_editor_absoluteX="17dp">
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+
+                            android:layout_width="15dp"
+                            android:layout_height="15dp"
+                            android:layout_marginStart="10dp"
+                            android:background="@drawable/tron">
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                        <TextView
+                            android:id="@+id/tv_Da_Xac_Nhan"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+
+                            android:text="Đã xác nhận"
+                            android:textColor="#05237C"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/Da_XN"
+                        android:layout_width="wrap_content"
+                        android:layout_height="50dp"
+                        android:visibility="gone"
+                        android:layout_marginStart="17dp"
+                        android:layout_marginTop="2dp"
+                        android:background="@drawable/line"
+                        app:layout_constraintStart_toStartOf="parent">
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                    <LinearLayout
+                        android:id="@+id/cum_chuaxacnhan"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        >
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:id="@+id/chuaxacnhan"
+                            android:layout_width="11dp"
+                            android:layout_height="15dp"
+                            android:layout_marginStart="10dp"
+                            android:background="@drawable/tron"
+                            app:layout_constraintStart_toStartOf="parent">
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+                        <TextView
+                            android:id="@+id/tv_chuaxacnhan"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginBottom="36dp"
+                            android:text="Chưa Xác Nhận"
+                            android:textColor="#05237C"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+
+
+
+
+
+
+
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.recyclerview.widget.RecyclerView

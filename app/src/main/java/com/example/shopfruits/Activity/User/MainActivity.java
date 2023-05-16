@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Menu;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -57,8 +58,9 @@ public class MainActivity extends AppCompatActivity {
     User user;
     APIService apiService;
     List<Product> productList;
-    ImageView imageViewProfile;
+    ImageView imageViewProfile,timkiem;
     ConstraintLayout cart,profile;
+    EditText edit_timkiem;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -119,6 +121,23 @@ public class MainActivity extends AppCompatActivity {
             Glide.with(getApplicationContext()).load(user.getAvatar()).into(imageViewProfile);
 
         }
+        edit_timkiem=findViewById(R.id.editTextTimKiem);
+        timkiem.setOnClickListener(new View.OnClickListener() {
+            boolean isShowing = false;
+            @Override
+            public void onClick(View view) {
+                if (!isShowing) {
+                    edit_timkiem.setVisibility(View.VISIBLE);
+                    isShowing = true;
+                } else {
+                    edit_timkiem.setVisibility(View.GONE);
+                    isShowing = false;
+
+                    GetProductTimKiem(edit_timkiem.getText().toString().trim());
+                }
+            }
+        });
+
         // lưu vào Pre
         getIDCart(user.getUserID());
         SharePrefManager.getInstance(getApplicationContext()).userID(user.getUserID());
@@ -157,6 +176,7 @@ public class MainActivity extends AppCompatActivity {
     }
     private void AnhXa(){
         cart=findViewById(R.id.cart);
+        timkiem=findViewById(R.id.imageView7);
         rcProduct=(RecyclerView) findViewById(R.id.rc_product);
         rctop5=(RecyclerView) findViewById(R.id.rc_top5);
         rc_loai=(RecyclerView) findViewById(R.id.rc_loai);
@@ -198,7 +218,30 @@ public class MainActivity extends AppCompatActivity {
         });
         return 0;
     }
+    private void GetProductTimKiem(String key) {
+        apiService= RetrofitClient.getInstance().getRetrofit(constants.ROOT_URL).create(APIService.class);
+        apiService.timkiem(key).enqueue(new Callback<List<Product>>() {
+            @Override
+            public void onResponse(Call<List<Product>> call, Response<List<Product>> response) {
+                if(response.isSuccessful()){
+                    productList=response.body();
+                    productAdapter=new ProductAdapter(productList,MainActivity.this);
+                    rcProduct.setHasFixedSize(true);
+                    GridLayoutManager layoutManager=new GridLayoutManager(getApplicationContext(),2);
+                    rcProduct.setLayoutManager(layoutManager);
+                    rcProduct.setAdapter(productAdapter);
+                }else{
+                    int statusCode=response.code();
+                }
+            }
 
+            @Override
+            public void onFailure(Call<List<Product>> call, Throwable t) {
+                Log.d("logg",t.getMessage());
+            }
+        });
+
+    }
     private void GetProduct() {
         apiService= RetrofitClient.getInstance().getRetrofit(constants.ROOT_URL).create(APIService.class);
         apiService.getProductAll().enqueue(new Callback<List<Product>>() {

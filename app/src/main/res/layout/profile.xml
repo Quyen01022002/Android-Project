@@ -42,9 +42,9 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="50dp"
                 android:layout_marginEnd="16dp"
-                android:layout_marginBottom="50dp"
+                android:layout_marginBottom="10dp"
                 android:orientation="vertical"
-                app:layout_constraintBottom_toTopOf="@+id/editProfileB"
+                app:layout_constraintBottom_toTopOf="@+id/edit_profile_btn"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/profile_email">
@@ -114,7 +114,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:text="Địa chỉ:"/>
+                        android:text="Địa chỉ:" />
 
                     <TextView
                         android:id="@+id/profile_diachi"
