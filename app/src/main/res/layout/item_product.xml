@@ -56,8 +56,8 @@
 
         <TextView
             android:id="@+id/tv_nameproduct"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="150dp"
+            android:layout_height="40dp"
             android:layout_marginStart="10dp"
             android:text="Dâu Tây"
             android:textColor="#000"
@@ -66,12 +66,12 @@
             app:layout_constraintTop_toBottomOf="@+id/imageProduct" />
 
         <TextView
-            android:id="@+id/textView11"
+            android:id="@+id/tv_gia_sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:layout_marginTop="10dp"
-            android:text="200.000 Đ"
+            android:text="200.000"
             android:textColor="#000"
             android:textSize="17dp"
             android:textStyle="bold"
@@ -96,6 +96,15 @@
             android:visibility="gone"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView11"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:text="/Kg"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/tv_gia_sp" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

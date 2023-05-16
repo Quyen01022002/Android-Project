@@ -4,7 +4,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -75,7 +77,8 @@ public class ChiTietDH_Activity extends AppCompatActivity {
                             apiService.capnhat(orderEnity).enqueue(new Callback<OrderEnity>() {
                                 @Override
                                 public void onResponse(Call<OrderEnity> call, Response<OrderEnity> response) {
-
+                                        finish();
+                                    Toast.makeText(ChiTietDH_Activity.this, "Đã xác nhận", Toast.LENGTH_SHORT).show();
                                 }
 
                                 @Override
@@ -89,124 +92,86 @@ public class ChiTietDH_Activity extends AppCompatActivity {
 
                 }
                 if(TrangThai.getText().toString().equals("Đã Xác Nhận"))
-                {   ConstraintLayout DaXacNhan,NutDaXacNhan;
-                    ConstraintLayout ChuaXacNhan;
-                    ChuaXacNhan=findViewById(R.id.chuaxacnhan);
+                {   ConstraintLayout DaXacNhan;
+                    LinearLayout ChuaXacNhan;
+                    ChuaXacNhan=findViewById(R.id.DaXN);
                     ChuaXacNhan.setVisibility(View.VISIBLE);
-                    TextView TV_Da_XacNhan;
-                    TV_Da_XacNhan=findViewById(R.id.tv_Da_Xac_Nhan);
-                    DaXacNhan=findViewById(R.id.Da_Xac_Nhan);
-                    NutDaXacNhan=findViewById(R.id.Da_Xac_Nhan02);
-                    TV_Da_XacNhan.setVisibility(View.VISIBLE);
+                    DaXacNhan=findViewById(R.id.Da_XN);
                     DaXacNhan.setVisibility(View.VISIBLE);
-                    NutDaXacNhan.setVisibility(View.VISIBLE);
 
 
 
                 }if(TrangThai.getText().toString().equals("Đã Đóng Gói"))
-                {   ConstraintLayout DaXacNhan,NutDaXacNhan;
-                    TextView TV_Da_XacNhan;
-                    TV_Da_XacNhan=findViewById(R.id.tv_Da_Xac_Nhan);
-                    DaXacNhan=findViewById(R.id.Da_Xac_Nhan);
-                    NutDaXacNhan=findViewById(R.id.Da_Xac_Nhan02);
-                    TV_Da_XacNhan.setVisibility(View.VISIBLE);
-                    DaXacNhan.setVisibility(View.VISIBLE);
-                    NutDaXacNhan.setVisibility(View.VISIBLE);
-                    ConstraintLayout DaDongGoi,NutDaDongGoi;
-                    TextView Tv_DaDongGoi;
-                    Tv_DaDongGoi=findViewById(R.id.tv_Da_Dong_Goi);
-                    DaDongGoi=findViewById(R.id.Da_Dong_Goi);
-                    NutDaDongGoi=findViewById(R.id.Nut_Da_Dong_Goi);
-                    Tv_DaDongGoi.setVisibility(View.VISIBLE);
+                {   ConstraintLayout DaDonggoi;
+                    LinearLayout DaDongGoi;
+                    DaDonggoi=findViewById(R.id.Da_DG);
+                    DaDongGoi=findViewById(R.id.Nut_Da_Dong_Goi);
+                    DaDonggoi.setVisibility(View.VISIBLE);
                     DaDongGoi.setVisibility(View.VISIBLE);
-                    NutDaDongGoi.setVisibility(View.VISIBLE);
-
-                    ConstraintLayout ChuaXacNhan;
-                    ChuaXacNhan=findViewById(R.id.chuaxacnhan);
+                    ConstraintLayout DaXacNhan;
+                    LinearLayout ChuaXacNhan;
+                    ChuaXacNhan=findViewById(R.id.DaXN);
                     ChuaXacNhan.setVisibility(View.VISIBLE);
+                    DaXacNhan=findViewById(R.id.Da_XN);
+                    DaXacNhan.setVisibility(View.VISIBLE);
+
 
 
 
                 }
                 if(TrangThai.getText().toString().equals("Đang Giao"))
-                {   ConstraintLayout DaXacNhan,NutDaXacNhan;
-                    TextView TV_Da_XacNhan;
-                    TV_Da_XacNhan=findViewById(R.id.tv_Da_Xac_Nhan);
-                    DaXacNhan=findViewById(R.id.Da_Xac_Nhan);
-                    NutDaXacNhan=findViewById(R.id.Da_Xac_Nhan02);
-                    TV_Da_XacNhan.setVisibility(View.VISIBLE);
-                    DaXacNhan.setVisibility(View.VISIBLE);
-                    NutDaXacNhan.setVisibility(View.VISIBLE);
-                    //Đóng Gói
-                    ConstraintLayout DaDongGoi,NutDaDongGoi;
-                    TextView Tv_DaDongGoi;
-                    Tv_DaDongGoi=findViewById(R.id.tv_Da_Dong_Goi);
-                    DaDongGoi=findViewById(R.id.Da_Dong_Goi);
-                    NutDaDongGoi=findViewById(R.id.Nut_Da_Dong_Goi);
-                    Tv_DaDongGoi.setVisibility(View.VISIBLE);
-                    DaDongGoi.setVisibility(View.VISIBLE);
-                    NutDaDongGoi.setVisibility(View.VISIBLE);
-                    //Đang Giao
-                    ConstraintLayout DangGiao,NutDanggiao;
-                    TextView Tv_DangGiao;
-                    Tv_DangGiao=findViewById(R.id.tv_Dang_Giao);
+                {   ConstraintLayout DangGiao;
+                    LinearLayout Dang_Giao;
+                    Dang_Giao=findViewById(R.id.Nut_Dang_Giao);
                     DangGiao=findViewById(R.id.Dang_Giao);
-                    NutDanggiao=findViewById(R.id.Nut_Dang_Giao);
-                    Tv_DangGiao.setVisibility(View.VISIBLE);
+                   Dang_Giao.setVisibility(View.VISIBLE);
                     DangGiao.setVisibility(View.VISIBLE);
-                    NutDanggiao.setVisibility(View.VISIBLE);
-                    ConstraintLayout ChuaXacNhan;
-                    ChuaXacNhan=findViewById(R.id.chuaxacnhan);
+                    ConstraintLayout DaDonggoi;
+                    LinearLayout DaDongGoi;
+                    DaDonggoi=findViewById(R.id.Da_DG);
+                    DaDongGoi=findViewById(R.id.Nut_Da_Dong_Goi);
+                    DaDonggoi.setVisibility(View.VISIBLE);
+                    DaDongGoi.setVisibility(View.VISIBLE);
+                    ConstraintLayout DaXacNhan;
+                    LinearLayout ChuaXacNhan;
+                    ChuaXacNhan=findViewById(R.id.DaXN);
                     ChuaXacNhan.setVisibility(View.VISIBLE);
-
+                    DaXacNhan=findViewById(R.id.Da_XN);
+                    DaXacNhan.setVisibility(View.VISIBLE);
 
 
                 }
                 if(TrangThai.getText().toString().equals("Đã Giao"))
-                {   ConstraintLayout DaXacNhan,NutDaXacNhan;
-                    TextView TV_Da_XacNhan;
-                    TV_Da_XacNhan=findViewById(R.id.tv_Da_Xac_Nhan);
-                    DaXacNhan=findViewById(R.id.Da_Xac_Nhan);
-                    NutDaXacNhan=findViewById(R.id.Da_Xac_Nhan02);
-                    TV_Da_XacNhan.setVisibility(View.VISIBLE);
-                    DaXacNhan.setVisibility(View.VISIBLE);
-                    NutDaXacNhan.setVisibility(View.VISIBLE);
-                    //Đóng Gói
-                    ConstraintLayout DaDongGoi,NutDaDongGoi;
-                    TextView Tv_DaDongGoi;
-                    Tv_DaDongGoi=findViewById(R.id.tv_Da_Dong_Goi);
-                    DaDongGoi=findViewById(R.id.Da_Dong_Goi);
-                    NutDaDongGoi=findViewById(R.id.Nut_Da_Dong_Goi);
-                    Tv_DaDongGoi.setVisibility(View.VISIBLE);
-                    DaDongGoi.setVisibility(View.VISIBLE);
-                    NutDaDongGoi.setVisibility(View.VISIBLE);
-                    //Đang Giao
-                    ConstraintLayout DangGiao,NutDanggiao;
-                    TextView Tv_DangGiao;
-                    Tv_DangGiao=findViewById(R.id.tv_Dang_Giao);
-                    DangGiao=findViewById(R.id.Dang_Giao);
-                    NutDanggiao=findViewById(R.id.Nut_Dang_Giao);
-                    Tv_DangGiao.setVisibility(View.VISIBLE);
-                    DangGiao.setVisibility(View.VISIBLE);
-                    NutDanggiao.setVisibility(View.VISIBLE);
-
-                    //Đang Giao
-                    ConstraintLayout DaGiao,Nut_DaGiao;
-                    TextView tv_Da_Giao;
-                    tv_Da_Giao=findViewById(R.id.tv_Da_Giao);
+                {   ConstraintLayout DaGiao;
+                    LinearLayout Da_Giao;
                     DaGiao=findViewById(R.id.Da_Giao);
-                    Nut_DaGiao=findViewById(R.id.Nut_Da_Giao);
-                    tv_Da_Giao.setVisibility(View.VISIBLE);
+                    Da_Giao=findViewById(R.id.DaGiao_lin);
+                    Da_Giao.setVisibility(View.VISIBLE);
                     DaGiao.setVisibility(View.VISIBLE);
-                    Nut_DaGiao.setVisibility(View.VISIBLE);
-
-                    ConstraintLayout ChuaXacNhan;
-                    ChuaXacNhan=findViewById(R.id.chuaxacnhan);
+                    ConstraintLayout DangGiao;
+                    LinearLayout Dang_Giao;
+                    Dang_Giao=findViewById(R.id.Nut_Dang_Giao);
+                    DangGiao=findViewById(R.id.Dang_Giao);
+                    Dang_Giao.setVisibility(View.GONE);
+                    DangGiao.setVisibility(View.GONE);
+                    ConstraintLayout DaDonggoi;
+                    LinearLayout DaDongGoi;
+                    DaDonggoi=findViewById(R.id.Da_DG);
+                    DaDongGoi=findViewById(R.id.Nut_Da_Dong_Goi);
+                    DaDonggoi.setVisibility(View.VISIBLE);
+                    DaDongGoi.setVisibility(View.VISIBLE);
+                    ConstraintLayout DaXacNhan;
+                    LinearLayout ChuaXacNhan;
+                    ChuaXacNhan=findViewById(R.id.DaXN);
                     ChuaXacNhan.setVisibility(View.VISIBLE);
-                    TextView xacnhan=findViewById(R.id.xacnhan);
-                    xacnhan.setText("Đánh giá");
+                    DaXacNhan=findViewById(R.id.Da_XN);
+                    DaXacNhan.setVisibility(View.VISIBLE);
+
                     XacNhan=findViewById(R.id.XacNhan_Constrian);
                     XacNhan.setVisibility(View.VISIBLE);
+                    TextView Danhgia=findViewById(R.id.xacnhan);
+                    Danhgia.setText("Đánh Giá");
+
                     XacNhan.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {

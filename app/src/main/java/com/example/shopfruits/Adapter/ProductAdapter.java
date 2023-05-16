@@ -40,7 +40,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.MyViewHo
 
     public class MyViewHolder extends RecyclerView.ViewHolder{
         public ImageView images;
-        public TextView tenSp,idsp,storeID;
+        public TextView tenSp,idsp,storeID,gia;
         ConstraintLayout add;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -49,6 +49,8 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.MyViewHo
             idsp=itemView.findViewById(R.id.tv_id);
             add=itemView.findViewById(R.id.themgoihang);
             storeID=itemView.findViewById(R.id.idstore);
+            gia=itemView.findViewById(R.id.tv_gia_sp);
+
 
             add.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -82,6 +84,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.MyViewHo
         holder.idsp.setText(proID);
         String idstore=String.valueOf(product.getStoreID());
         holder.storeID.setText(idstore);
+        holder.gia.setText(String.valueOf(product.getPrice()));
         Glide.with(context)
                 .load(product.getImg().toString().trim())
                 .into(holder.images);

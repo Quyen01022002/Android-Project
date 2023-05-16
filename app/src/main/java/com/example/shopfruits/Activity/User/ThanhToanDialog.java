@@ -23,6 +23,10 @@ import com.example.shopfruits.Models.User;
 import com.example.shopfruits.Pref.SharePrefManager;
 import com.example.shopfruits.R;
 
+import java.time.LocalDate;
+import java.util.Calendar;
+import java.util.Date;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -81,24 +85,29 @@ public class ThanhToanDialog extends AppCompatActivity {
         DatHang.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                SaveDonHang();
-                pd.setSold(pd.getSold()+Integer.parseInt(soluong.getText().toString()));
-                pd.setQuantity(pd.getQuantity()-Integer.parseInt(soluong.getText().toString()));
+
+                pd.setSold(pd.getSold() + Integer.parseInt(soluong.getText().toString()));
+                int slcon = Integer.parseInt(soluong.getText().toString());
+                if (slcon > pd.getQuantity()) {
+                    Toast.makeText(ThanhToanDialog.this, "Bạn đã mua quá số lượng sản phẩm tồn kho", Toast.LENGTH_SHORT).show();
+                } else {
+                    pd.setQuantity(pd.getQuantity() - Integer.parseInt(soluong.getText().toString()));
 
 
-                apiService.updateproduct(pd).enqueue(new Callback<Product>() {
-                    @Override
-                    public void onResponse(Call<Product> call, Response<Product> response) {
+                    apiService.updateproduct(pd).enqueue(new Callback<Product>() {
+                        @Override
+                        public void onResponse(Call<Product> call, Response<Product> response) {
+                            SaveDonHang();
+                        }
 
-                    }
+                        @Override
+                        public void onFailure(Call<Product> call, Throwable t) {
 
-                    @Override
-                    public void onFailure(Call<Product> call, Throwable t) {
-
-                    }
-                });
+                        }
+                    });
 
 
+                }
             }
         });
 
@@ -223,8 +232,11 @@ public class ThanhToanDialog extends AppCompatActivity {
         orderEnity.setStatusTT("Chưa Thanh Toán");
         orderEnity.setStatus("Chưa Xác Nhận");
         orderEnity.setAddress(DiaChi_diachi.getText().toString().trim());
-        // orderEnity.setCreatedAt(LocalDate.now().toString());
-        // orderEnity.setUpdatedAt(LocalDate.now().toString());
+        Calendar calendar = Calendar.getInstance();
+        Date currentDate = calendar.getTime();
+        java.sql.Date sqlDate = new java.sql.Date(currentDate.getTime());
+        orderEnity.setCreatedAt(sqlDate);
+        orderEnity.setUpdatedAt(sqlDate);
         apiService.saveDonHang(orderEnity).enqueue(new Callback<OrderEnity>() {
             @Override
             public void onResponse(Call<OrderEnity> call, Response<OrderEnity> response) {

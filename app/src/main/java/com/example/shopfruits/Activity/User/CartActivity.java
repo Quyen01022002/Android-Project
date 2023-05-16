@@ -46,6 +46,7 @@ public class CartActivity extends AppCompatActivity {
                 startActivity(it);
             }
         });
+        
         String id= intent.getStringExtra("iditem");
 
         String idstore= intent.getStringExtra("idstore");

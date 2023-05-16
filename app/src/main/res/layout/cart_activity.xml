@@ -100,6 +100,7 @@
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:id="@+id/chonsp"
                     android:background="#F8F8F8">
 
                     <TextView

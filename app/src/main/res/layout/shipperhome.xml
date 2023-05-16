@@ -25,6 +25,7 @@
 
                 <com.makeramen.roundedimageview.RoundedImageView
                     android:layout_width="50dp"
+                    android:id="@+id/img_avatar_shipper"
                     android:layout_height="50dp"
                     android:layout_marginTop="5dp"
                     app:riv_corner_radius="50dp"

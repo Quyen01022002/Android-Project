@@ -36,11 +36,12 @@ public class ProductAdapterTop5 extends RecyclerView.Adapter<ProductAdapterTop5.
 
     public class MyViewHolder extends RecyclerView.ViewHolder{
         public ImageView images;
-        public TextView tenSp;
+        public TextView tenSp,gia;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             images=itemView.findViewById(R.id.imageViewRC);
             tenSp=itemView.findViewById(R.id.textNametop1);
+            gia=itemView.findViewById(R.id.textViewGia);
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -53,6 +54,7 @@ public class ProductAdapterTop5 extends RecyclerView.Adapter<ProductAdapterTop5.
     public void onBindViewHolder(@NonNull MyViewHolder holder,int position){
         Product product = array.get(position);
         holder.tenSp.setText(product.getName());
+        holder.gia.setText(String.valueOf(product.getPrice()));
         Glide.with(context)
                 .load(product.getImg().toString().trim())
                 .into(holder.images);
