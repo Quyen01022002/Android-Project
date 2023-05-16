@@ -136,23 +136,31 @@ public interface APIService {
 
 
     //API Chưa viết
-    @FormUrlEncoded
-    @POST
-    Call <Product> chinhSuaProduct(@Body Product product);
 
     @FormUrlEncoded
-    @POST
+    @POST("getfollowing")
     Call <List<User>> getKhachHangTheoDoiShop(@Field("storeID") int storeID);
 
 
     @FormUrlEncoded
-    @POST
+    @POST("getcustomerpaid")
     Call <List<User>> getKhachHangDaMuaHang(@Field("storeID") int storeID);
 
 
     @FormUrlEncoded
-    @POST
+    @POST("getshipperofstore")
     Call <List<User>> getShipperOfStore(@Field("storeID") int storeID);
+
+    @FormUrlEncoded
+    @POST("getorderofshipperonstore")
+    Call <List<DonHang_Shop_Model>> getOrderOfShipperOnStore(@Field("shipperID") int shipperID,@Field("storeID") int storeID);
+
+    @FormUrlEncoded
+    @POST("getshipper")
+    Call <User> getShipper(@Field("shipperID") int shipperID);
+
+
+
 }
 
 
