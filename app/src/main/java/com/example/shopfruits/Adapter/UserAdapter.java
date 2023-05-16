@@ -1,5 +1,7 @@
 package com.example.shopfruits.Adapter;
 
+import static android.content.Intent.getIntent;
+
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -16,6 +18,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.shopfruits.Activity.User.CartActivity;
 import com.example.shopfruits.Activity.User.ChiTietAcivity;
+import com.example.shopfruits.Activity.Vendor.DetailShipper;
 import com.example.shopfruits.Models.Product;
 import com.example.shopfruits.Models.User;
 import com.example.shopfruits.R;
@@ -47,14 +50,14 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.MyViewHolder> 
             super(itemView);
             images=itemView.findViewById(R.id.img_user);
             tenUser=itemView.findViewById(R.id.tv_nameuser);
-            id=itemView.findViewById(R.id.tv_id);
+            id=itemView.findViewById(R.id.user_id);
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     Toast.makeText(context,"Bạn đã chọn user: "+tenUser.getText().toString(), Toast.LENGTH_SHORT).show();
-                    Product product = new Product();
-                    Intent it=new Intent(context, ChiTietAcivity.class);
-                    it.putExtra("id", id.getText());
+
+                    Intent it=new Intent(context, DetailShipper.class);
+                    it.putExtra("idShipper", id.getText());
                     context.startActivity(it);
                 }
             });

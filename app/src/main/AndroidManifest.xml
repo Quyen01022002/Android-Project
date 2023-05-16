@@ -75,6 +75,9 @@
             android:name=".Activity.User.ThemShopDialog"
             android:theme="@style/Theme.Material3.Light.Dialog" />
         <activity
+            android:name=".Activity.Vendor.DetailShipper"
+            android:theme="@style/Theme.Material3.Light.Dialog" />
+        <activity
             android:name=".Activity.User.editprofileDialog"
             android:theme="@style/Theme.Material3.Light.Dialog" />
         <activity

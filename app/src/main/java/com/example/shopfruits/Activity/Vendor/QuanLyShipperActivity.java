@@ -30,6 +30,7 @@ public class QuanLyShipperActivity extends AppCompatActivity {
     List<User> userList;
     RecyclerView rcUser;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
