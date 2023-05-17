@@ -41,7 +41,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="40dp"
-            android:text="Tổng cộng(2 sản phẩm):"
+            android:text="Tổng cộng:"
             android:textColor="#000"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"

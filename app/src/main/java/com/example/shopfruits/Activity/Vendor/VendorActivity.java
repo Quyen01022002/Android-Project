@@ -13,6 +13,7 @@ import com.bumptech.glide.Glide;
 import com.example.shopfruits.API.APIService;
 import com.example.shopfruits.API.RetrofitClient;
 import com.example.shopfruits.API.constants;
+import com.example.shopfruits.Activity.User.MainActivity;
 import com.example.shopfruits.Models.Stores;
 import com.example.shopfruits.Pref.SharePrefManager;
 import com.example.shopfruits.R;
@@ -25,7 +26,7 @@ public class VendorActivity extends AppCompatActivity {
     APIService apiService;
     TextView tenshop;
     ImageView avatar;
-    ConstraintLayout QL_SP,QL_DH, TK_DT, QL_KH, QL_ShP;
+    ConstraintLayout QL_SP,QL_DH, TK_DT, QL_KH, QL_ShP,DangXuat;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +39,7 @@ public class VendorActivity extends AppCompatActivity {
     TK_DT=findViewById(R.id.tk_dt);
     QL_KH=findViewById(R.id.ql_kh);
     QL_ShP=findViewById(R.id.ql_shp);
+        DangXuat=findViewById(R.id.dangxuat);
         apiService = RetrofitClient.getInstance().getRetrofit(constants.ROOT_URL).create(APIService.class);
         Intent intent = getIntent();
         String id= intent.getStringExtra("idst");
@@ -79,6 +81,14 @@ public class VendorActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent it=new Intent(VendorActivity.this, ThongKeActivity.class);
                 it.putExtra("idst",id);
+                startActivity(it);
+            }
+        });
+
+        DangXuat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent it=new Intent(VendorActivity.this, MainActivity.class);
                 startActivity(it);
             }
         });
