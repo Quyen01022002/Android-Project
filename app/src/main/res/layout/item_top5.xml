@@ -55,35 +55,35 @@
             app:layout_constraintTop_toBottomOf="@+id/textNametop1">
 
             <ImageView
-                android:id="@+id/imagest1_dg"
+                android:id="@+id/imagest1_top5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 app:srcCompat="@drawable/star" />
 
             <ImageView
-                android:id="@+id/imagest2_dg"
+                android:id="@+id/imagest2_top5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 app:srcCompat="@drawable/star" />
 
             <ImageView
-                android:id="@+id/imagest3_dg"
+                android:id="@+id/imagest3_top5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 app:srcCompat="@drawable/star" />
 
             <ImageView
-                android:id="@+id/imagest4_dg"
+                android:id="@+id/imagest4_top5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 app:srcCompat="@drawable/star" />
 
             <ImageView
-                android:id="@+id/imagest5_dg"
+                android:id="@+id/imagest5_top5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"

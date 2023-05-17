@@ -58,6 +58,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.MyViewHolder> 
 
                     Intent it=new Intent(context, DetailShipper.class);
                     it.putExtra("idShipper", id.getText());
+
                     context.startActivity(it);
                 }
             });

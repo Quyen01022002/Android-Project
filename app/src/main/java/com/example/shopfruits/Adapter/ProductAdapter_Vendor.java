@@ -14,6 +14,7 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.shopfruits.Activity.Vendor.ChiTietAcivity_Shop;
 import com.example.shopfruits.Activity.Vendor.ChinhSuaSPDialog;
 import com.example.shopfruits.Models.Product;
 import com.example.shopfruits.R;
@@ -55,7 +56,7 @@ public class ProductAdapter_Vendor extends RecyclerView.Adapter<ProductAdapter_V
                 public void onClick(View view) {
                     Toast.makeText(context,"Bạn đã chọn product"+idsp.getText().toString(), Toast.LENGTH_SHORT).show();
                     Product product = new Product();
-                    Intent it=new Intent(context, ChinhSuaSPDialog.class);
+                    Intent it=new Intent(context, ChiTietAcivity_Shop.class);
                     it.putExtra("idProduct", idsp.getText());
 
                     context.startActivity(it);

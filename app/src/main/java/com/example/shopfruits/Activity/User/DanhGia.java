@@ -112,11 +112,30 @@ public class DanhGia extends AppCompatActivity {
             public void onClick(View view) {
 
                 danhgia(iddh);
+                tinhratingsp();
             }
         });
 
 
 
+    }
+    public double tinhratingsp()
+    {
+        apiService= RetrofitClient.getInstance().getRetrofit(constants.ROOT_URL).create(APIService.class);
+        apiService.tinhrating(pd.get(0).getProductID()).enqueue(new Callback<Review>() {
+            @Override
+            public void onResponse(Call<Review> call, Response<Review> response) {
+                Review rv=response.body();
+                rv.getRating();
+            }
+
+            @Override
+            public void onFailure(Call<Review> call, Throwable t) {
+
+            }
+        });
+
+        return 0;
     }
     public void AnhXa()
     {

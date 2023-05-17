@@ -20,6 +20,7 @@ import com.example.shopfruits.API.constants;
 import com.example.shopfruits.Adapter.ItemDonHangAdapter;
 import com.example.shopfruits.Models.DonHangModel;
 import com.example.shopfruits.Models.OrderEnity;
+import com.example.shopfruits.Models.Review;
 import com.example.shopfruits.Models.User;
 import com.example.shopfruits.Pref.SharePrefManager;
 import com.example.shopfruits.R;
@@ -36,7 +37,7 @@ public class ChiTietDH_Activity extends AppCompatActivity {
     TextView TrangThai;
     ConstraintLayout XacNhan;
     OrderEnity orderEnity=new OrderEnity();
-
+    User  user=new User();
 
 
     @Override
@@ -49,7 +50,7 @@ public class ChiTietDH_Activity extends AppCompatActivity {
         Intent it=getIntent();
         TextView NguoiNhan=findViewById(R.id.tv_Ten);
         ImageView Avatar=findViewById(R.id.nguoiNhan_Avatar);
-        User user=new User();
+
         user = SharePrefManager.getInstance(this).getUser();
         NguoiNhan.setText(user.getName());
 
@@ -142,7 +143,8 @@ public class ChiTietDH_Activity extends AppCompatActivity {
 
                 }
                 if(TrangThai.getText().toString().equals("Đã Giao"))
-                {   ConstraintLayout DaGiao;
+                {
+                    ConstraintLayout DaGiao;
                     LinearLayout Da_Giao;
                     DaGiao=findViewById(R.id.Da_Giao);
                     Da_Giao=findViewById(R.id.DaGiao_lin);
@@ -166,20 +168,36 @@ public class ChiTietDH_Activity extends AppCompatActivity {
                     ChuaXacNhan.setVisibility(View.VISIBLE);
                     DaXacNhan=findViewById(R.id.Da_XN);
                     DaXacNhan.setVisibility(View.VISIBLE);
-
-                    XacNhan=findViewById(R.id.XacNhan_Constrian);
-                    XacNhan.setVisibility(View.VISIBLE);
-                    TextView Danhgia=findViewById(R.id.xacnhan);
-                    Danhgia.setText("Đánh Giá");
-
-                    XacNhan.setOnClickListener(new View.OnClickListener() {
+                    apiService.checkdanhgia(iddh,user.getUserID()).enqueue(new Callback<List<Review>>() {
                         @Override
-                        public void onClick(View view) {
-                            Intent it=new Intent(ChiTietDH_Activity.this,DanhGia.class);
-                            it.putExtra("iddh",iddh);
-                            startActivity(it);
+                        public void onResponse(Call<List<Review>> call, Response<List<Review>> response) {
+                            List<Review> rv=response.body();
+                            if(rv.size()==0)
+                            {
+                                XacNhan=findViewById(R.id.XacNhan_Constrian);
+                                XacNhan.setVisibility(View.VISIBLE);
+                                TextView Danhgia=findViewById(R.id.xacnhan);
+                                Danhgia.setText("Đánh Giá");
+
+                                XacNhan.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View view) {
+                                        Intent it=new Intent(ChiTietDH_Activity.this,DanhGia.class);
+                                        it.putExtra("iddh",iddh);
+                                        startActivity(it);
+                                    }
+                                });
+
+
+                            }                        }
+
+                        @Override
+                        public void onFailure(Call<List<Review>> call, Throwable t) {
+
                         }
                     });
+
+
 
 
                 }

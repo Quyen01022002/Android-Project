@@ -3,11 +3,13 @@ package com.example.shopfruits.Activity.Vendor;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
+import com.bumptech.glide.Glide;
 import com.example.shopfruits.API.APIService;
 import com.example.shopfruits.API.RetrofitClient;
 import com.example.shopfruits.API.constants;
@@ -22,6 +24,7 @@ import retrofit2.Response;
 public class VendorActivity extends AppCompatActivity {
     APIService apiService;
     TextView tenshop;
+    ImageView avatar;
     ConstraintLayout QL_SP,QL_DH, TK_DT, QL_KH, QL_ShP;
 
     @Override
@@ -29,6 +32,7 @@ public class VendorActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.vendor_home);
     tenshop=findViewById(R.id.tv_vendor_tenshop);
+    avatar=findViewById(R.id.imageView8);
     QL_SP=findViewById(R.id.ql_sp);
     QL_DH=findViewById(R.id.ql_dh);
     TK_DT=findViewById(R.id.tk_dt);
@@ -85,6 +89,7 @@ public class VendorActivity extends AppCompatActivity {
                 Stores st=new Stores();
                 st=response.body();
                 tenshop.setText(st.getName());
+                Glide.with(getApplicationContext()).load(st.getAvatar()).into(avatar);
             }
 
             @Override

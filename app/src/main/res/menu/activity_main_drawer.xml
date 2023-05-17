@@ -17,19 +17,7 @@
             android:icon="@drawable/ic_menu_gallery"
             android:title="@string/nguoiban" />
 
-        <item
-            android:id="@+id/nav_slideshow"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="@string/menu_slideshow" />
     </group>
-    <item
-        android:title="Cá Nhân">
-        <menu>
-            <item
-                android:id="@+id/nav_logout"
-                android:icon="@drawable/rc_shape"
-                android:title="Logout"/>
-        </menu>
-    </item>
+
 
 </menu>
