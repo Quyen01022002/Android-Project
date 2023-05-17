@@ -3,6 +3,7 @@ package com.example.shopfruits.Activity.Vendor;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -30,7 +31,7 @@ public class QuanLyShipperActivity extends AppCompatActivity {
     List<User> userList;
     RecyclerView rcUser;
 
-
+ImageView back;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,6 +58,13 @@ public class QuanLyShipperActivity extends AppCompatActivity {
 
             }
         });
-
+        back=findViewById(R.id.imageView);
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent it = new Intent(QuanLyShipperActivity.this, VendorActivity.class);
+                startActivity(it);
+            }
+        });
     }
 }

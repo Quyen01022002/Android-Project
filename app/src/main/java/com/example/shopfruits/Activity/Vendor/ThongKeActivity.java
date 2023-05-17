@@ -8,6 +8,8 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.shopfruits.API.APIService;
@@ -57,7 +59,7 @@ public class ThongKeActivity extends AppCompatActivity implements OnChartValueSe
     ProductAdapterTop5OfStore productAdaptertop5ofStore;
     RecyclerView rctop5;
     ProductOnTop5 pro;
-
+    ImageView back;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -112,8 +114,14 @@ public class ThongKeActivity extends AppCompatActivity implements OnChartValueSe
 
         rctop5=findViewById(R.id.top5SpBanChay);
         GetProductTop5(Integer.parseInt(idStore));
-
-
+        back=findViewById(R.id.imageView);
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent it = new Intent(ThongKeActivity.this, VendorActivity.class);
+                startActivity(it);
+            }
+        });
 
 
 
