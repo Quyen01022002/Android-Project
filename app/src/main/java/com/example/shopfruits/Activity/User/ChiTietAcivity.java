@@ -37,7 +37,7 @@ import retrofit2.Response;
 public class ChiTietAcivity extends AppCompatActivity {
     APIService apiService;
     TextView Ten,Gia,MoTa,mua,tenshop;
-    ImageView anh;
+    ImageView anh,avatar;
     ImageView QuayLai;
     List<FollowUsserModel> fl=new ArrayList<>();
     ConstraintLayout danhgia,mota;
@@ -57,7 +57,7 @@ public class ChiTietAcivity extends AppCompatActivity {
         Intent intent = getIntent();
         String id= intent.getStringExtra("id");
         int idsp=Integer.parseInt (id);
-
+    avatar=findViewById(R.id.imageView10);
         mota.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -143,6 +143,7 @@ public class ChiTietAcivity extends AppCompatActivity {
                         st=response.body();
                         tenshop.setText(st.getName());
                         checkFollow(st.getStoreID());
+                        Glide.with(getApplicationContext()).load(st.getAvatar().toString().trim()).into(avatar);
                     }
 
                     @Override
