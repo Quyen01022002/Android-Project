@@ -3,6 +3,7 @@ package com.example.shopfruits.Activity.Vendor;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -28,6 +29,7 @@ public class QuanLySPActivity extends AppCompatActivity {
     List<Product> productList;
     RecyclerView rcProduct;
     ConstraintLayout ThemSP;
+    ImageView back;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,6 +62,15 @@ public class QuanLySPActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent it=new Intent(QuanLySPActivity.this,ThemSPDialog.class);
+                startActivity(it);
+            }
+        });
+
+        back=findViewById(R.id.imageView);
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent it = new Intent(QuanLySPActivity.this, VendorActivity.class);
                 startActivity(it);
             }
         });

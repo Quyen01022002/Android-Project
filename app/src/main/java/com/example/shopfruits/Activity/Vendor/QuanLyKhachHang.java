@@ -1,8 +1,11 @@
 package com.example.shopfruits.Activity.Vendor;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -21,7 +24,7 @@ public class QuanLyKhachHang extends AppCompatActivity {
 
 
 
-
+    ImageView back;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +62,15 @@ public class QuanLyKhachHang extends AppCompatActivity {
             @Override
             public void onPageSelected(int position) {
                 binding.tabLayout.selectTab(binding.tabLayout.getTabAt(position));
+            }
+        });
+
+        back=findViewById(R.id.imageView);
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent it = new Intent(QuanLyKhachHang.this, VendorActivity.class);
+                startActivity(it);
             }
         });
 
