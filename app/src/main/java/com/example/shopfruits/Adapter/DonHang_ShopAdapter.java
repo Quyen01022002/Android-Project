@@ -48,7 +48,7 @@ public class DonHang_ShopAdapter extends RecyclerView.Adapter<DonHang_ShopAdapte
 
     public class MyViewHolder extends RecyclerView.ViewHolder{
 
-        public TextView TrangThai,TT,ID;
+        public TextView TrangThai,TT,ID,DiaChi;
         public RecyclerView itemDH;
 
         public MyViewHolder(@NonNull View itemView) {
@@ -58,6 +58,7 @@ public class DonHang_ShopAdapter extends RecyclerView.Adapter<DonHang_ShopAdapte
             TT=itemView.findViewById(R.id.tv_trangthai2);
             itemDH=itemView.findViewById(R.id.rc_itemdh_shop);
             ID=itemView.findViewById(R.id.tv_id_dh_shop);
+            DiaChi=itemView.findViewById(R.id.tv_diachi);
 
 
             itemView.setOnClickListener(new View.OnClickListener() {
@@ -80,6 +81,7 @@ public class DonHang_ShopAdapter extends RecyclerView.Adapter<DonHang_ShopAdapte
         holder.TrangThai.setText(product.getStatus());
        // holder.TongTien.setText(String.valueOf(product.getCostSum()));
         holder.ID.setText(String.valueOf(product.getOrderID()));
+        holder.DiaChi.setText(product.getAddress());
         apiService= RetrofitClient.getInstance().getRetrofit(constants.ROOT_URL).create(APIService.class);
         apiService.getitemdh(product.getOrderID()).enqueue(new Callback<List<DonHangModel>>() {
             @Override

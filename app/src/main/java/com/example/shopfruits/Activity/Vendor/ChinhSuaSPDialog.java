@@ -53,7 +53,7 @@ import retrofit2.Response;
 public class ChinhSuaSPDialog extends AppCompatActivity {
     APIService apiService;
     Button btnChoose;
-    String idPro;
+    int idPro;
     EditText editTenSP,sl,mota,gia;
 
     ImageView imageViewChoose, imageViewUpLoad;
@@ -113,8 +113,8 @@ public class ChinhSuaSPDialog extends AppCompatActivity {
         });
 
         Intent intent = getIntent();
-        idPro= intent.getStringExtra("idProduct");
-        getProduct(Integer.parseInt(idPro));
+        idPro= intent.getIntExtra("idProduct",0);
+        getProduct(idPro);
 
     }
 
@@ -263,7 +263,7 @@ public class ChinhSuaSPDialog extends AppCompatActivity {
 
         Product us = new Product();
 
-        us.setProductID(Integer.parseInt(idPro));
+        us.setProductID(idPro);
         us.setImg(IMAGE_PATH);
         us.setName(String.valueOf(editTenSP.getText().toString().trim()));
         us.setPrice(Integer.parseInt(gia.getText().toString().trim()));

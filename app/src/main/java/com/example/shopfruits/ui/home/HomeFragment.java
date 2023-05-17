@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -20,11 +21,13 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.shopfruits.API.APIService;
 import com.example.shopfruits.API.RetrofitClient;
 import com.example.shopfruits.API.constants;
+import com.example.shopfruits.Activity.User.profile;
 import com.example.shopfruits.Adapter.CategoryAdapter;
 import com.example.shopfruits.Adapter.ProductAdapter;
 import com.example.shopfruits.Adapter.ProductAdapterTop5;
 import com.example.shopfruits.Models.CartEnity;
 import com.example.shopfruits.Models.Category;
+import com.example.shopfruits.Models.DiaChi;
 import com.example.shopfruits.Models.Product;
 import com.example.shopfruits.Models.User;
 import com.example.shopfruits.Pref.SharePrefManager;
@@ -79,7 +82,22 @@ public class HomeFragment extends Fragment {
 
 
         }
+        TextView diachi=view.findViewById(R.id.home_diachi);
+        int iduser = SharePrefManager.getInstance(getActivity()).getuserID();
+        apiService= RetrofitClient.getInstance().getRetrofit(constants.ROOT_URL).create(APIService.class);
+        apiService.getdiachi(iduser).enqueue(new Callback<DiaChi>() {
+            @Override
+            public void onResponse(Call<DiaChi> call, Response<DiaChi> response) {
+                DiaChi dc=new DiaChi();
+                dc=response.body();
+                diachi.setText(dc.getDiaChi());
+            }
 
+            @Override
+            public void onFailure(Call<com.example.shopfruits.Models.DiaChi> call, Throwable t) {
+                Toast.makeText(getActivity(), "", Toast.LENGTH_SHORT).show();
+            }
+        });
 
 
 

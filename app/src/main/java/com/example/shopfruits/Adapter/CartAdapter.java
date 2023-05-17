@@ -19,6 +19,7 @@ import com.example.shopfruits.API.APIService;
 import com.example.shopfruits.API.RetrofitClient;
 import com.example.shopfruits.API.constants;
 import com.example.shopfruits.Activity.User.CartActivity;
+import com.example.shopfruits.Activity.User.ThanhToanDialog;
 import com.example.shopfruits.Models.Cart;
 import com.example.shopfruits.Pref.SharePrefManager;
 import com.example.shopfruits.R;
@@ -49,15 +50,20 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyViewHolder> 
 
     public class MyViewHolder extends RecyclerView.ViewHolder{
         public ImageView images;
-        public TextView tenSp,id,gia;
+        public TextView tenSp,id,idsp,gia,soluong;
         public ConstraintLayout Xoa;
         public CheckBox chon;
+        ConstraintLayout tru,cong;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             images=itemView.findViewById(R.id.img_cart);
+            soluong=itemView.findViewById(R.id.textView10);
+            cong=itemView.findViewById(R.id.constraintLayout6);
+            tru=itemView.findViewById(R.id.constraintLayout5);
             tenSp=itemView.findViewById(R.id.tv_namespcart);
             gia=itemView.findViewById(R.id.tv_giaCart);
             id=itemView.findViewById(R.id.txr_id);
+            idsp=itemView.findViewById(R.id.txr_idsp);
             Xoa=itemView.findViewById(R.id.xoa);
             chon=itemView.findViewById(R.id.checkBox);
             Xoa.setOnClickListener(new View.OnClickListener() {
@@ -84,6 +90,50 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyViewHolder> 
 
 
             });
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent it=new Intent(context, ThanhToanDialog.class);
+                    it.putExtra("idsp", Integer.parseInt(idsp.getText().toString()));
+
+                    context.startActivity(it);
+                }
+            });
+            tru.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+
+                    String sl = soluong.getText().toString().trim();
+
+                    final int sl_sp = Integer.parseInt(sl);
+                    if(sl_sp>1) {
+                        int new_sl_sp = sl_sp - 1;
+                        String sl_new = String.valueOf(new_sl_sp);
+                        soluong.setText(sl_new);
+                        String Gia = gia.getText().toString().trim();
+                        int int_gia = Integer.parseInt(Gia);
+                        int tong = int_gia * new_sl_sp;
+
+                    }
+
+                }
+            });
+
+            cong.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    String sl=soluong.getText().toString().trim();
+                    final int sl_sp=Integer.parseInt(sl);
+
+                    int new_sl_sp = sl_sp + 1;
+                    String sl_new = String.valueOf(new_sl_sp);
+                    soluong.setText(sl_new);
+                    String Gia = gia.getText().toString().trim();
+                    int int_gia = Integer.parseInt(Gia);
+                    int tong = int_gia * new_sl_sp;
+
+                }
+            });
 
 
         }
@@ -92,6 +142,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyViewHolder> 
     public void onBindViewHolder(@NonNull MyViewHolder holder,int position){
         Cart cart =array.get(position);
         holder.tenSp.setText(cart.getName());
+        holder.idsp.setText(String.valueOf(cart.getProductID()));
         String proID=String.valueOf(cart.getId());
         holder.id.setText(proID);
         String gia=String.valueOf(cart.getPrice());
@@ -99,6 +150,12 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyViewHolder> 
         Glide.with(context)
                 .load(cart.getImg().toString().trim())
                 .into(holder.images);
+
+    }
+    public void tinhtoan()
+    {
+
+
 
     }
     @Override

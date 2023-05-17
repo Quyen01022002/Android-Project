@@ -59,7 +59,8 @@ import retrofit2.Response;
 public class DetailShipper extends AppCompatActivity {
     APIService apiService;
     Button btnChoose;
-    String idShipper, idStore;
+    String idShipper ;
+    int idStore;
     DonHang_ShopAdapter donHang_shopAdapter;
 
     ImageView images;
@@ -88,9 +89,9 @@ public class DetailShipper extends AppCompatActivity {
         apiService= RetrofitClient.getInstance().getRetrofit(constants.ROOT_URL).create(APIService.class);
         Intent intent = getIntent();
         idShipper= intent.getStringExtra("idShipper");
-        idStore=intent.getStringExtra("idStore");
+        idStore = SharePrefManager.getInstance(this).getStoreID();
         getShipper(Integer.parseInt(idShipper));
-        getOrderOfShipperOnStore(Integer.parseInt(idShipper),2);
+        getOrderOfShipperOnStore(Integer.parseInt(idShipper),idStore);
     }
 
     private void getShipper(int iduser){

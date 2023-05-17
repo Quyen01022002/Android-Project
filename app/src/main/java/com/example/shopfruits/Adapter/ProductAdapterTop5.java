@@ -37,11 +37,17 @@ public class ProductAdapterTop5 extends RecyclerView.Adapter<ProductAdapterTop5.
     public class MyViewHolder extends RecyclerView.ViewHolder{
         public ImageView images;
         public TextView tenSp,gia;
+        public ImageView start_1,start_2,start_3,start_4,start_5;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             images=itemView.findViewById(R.id.imageViewRC);
             tenSp=itemView.findViewById(R.id.textNametop1);
             gia=itemView.findViewById(R.id.textViewGia);
+            start_1=itemView.findViewById(R.id.imagest1_top5);
+            start_2=itemView.findViewById(R.id.imagest2_top5);
+            start_3=itemView.findViewById(R.id.imagest3_top5);
+            start_4=itemView.findViewById(R.id.imagest4_top5);
+            start_5=itemView.findViewById(R.id.imagest5_top5);
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -55,6 +61,64 @@ public class ProductAdapterTop5 extends RecyclerView.Adapter<ProductAdapterTop5.
         Product product = array.get(position);
         holder.tenSp.setText(product.getName());
         holder.gia.setText(String.valueOf(product.getPrice()));
+        if((int)product.getRating()==1)
+        {
+
+
+
+            holder.start_1.setBackgroundResource(R.drawable.star);
+            holder.start_2.setBackgroundResource(R.drawable.start);
+            holder.start_3.setBackgroundResource(R.drawable.start);
+            holder.start_4.setBackgroundResource(R.drawable.start);
+            holder.start_5.setBackgroundResource(R.drawable.start);
+
+        }
+        else if((int)product.getRating()==2)
+        {
+
+
+
+            holder.start_1.setBackgroundResource(R.drawable.star);
+            holder.start_2.setBackgroundResource(R.drawable.star);
+            holder.start_3.setBackgroundResource(R.drawable.start);
+            holder.start_4.setBackgroundResource(R.drawable.start);
+            holder.start_5.setBackgroundResource(R.drawable.start);
+
+        }
+        else if((int)product.getRating()==3)
+        {
+
+
+
+            holder.start_1.setBackgroundResource(R.drawable.star);
+            holder.start_2.setBackgroundResource(R.drawable.star);
+            holder.start_3.setBackgroundResource(R.drawable.star);
+            holder.start_4.setBackgroundResource(R.drawable.start);
+            holder.start_5.setBackgroundResource(R.drawable.start);
+
+        }else if((int)product.getRating()==4)
+        {
+
+
+
+            holder.start_1.setBackgroundResource(R.drawable.star);
+            holder.start_2.setBackgroundResource(R.drawable.star);
+            holder.start_3.setBackgroundResource(R.drawable.star);
+            holder.start_4.setBackgroundResource(R.drawable.star);
+            holder.start_5.setBackgroundResource(R.drawable.start);
+
+        }else if((int)product.getRating()==5)
+        {
+            holder.start_1.setBackgroundResource(R.drawable.star);
+            holder.start_2.setBackgroundResource(R.drawable.star);
+            holder.start_3.setBackgroundResource(R.drawable.star);
+            holder.start_4.setBackgroundResource(R.drawable.star);
+            holder.start_5.setBackgroundResource(R.drawable.star);
+
+        }
+
+
+
         Glide.with(context)
                 .load(product.getImg().toString().trim())
                 .into(holder.images);
